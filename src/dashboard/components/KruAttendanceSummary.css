@@ -1,0 +1,16 @@
+.attendance-summary-wrapper{
+    display: flex;
+    flex-direction: row
+}
+
+.attendance-summary-property{
+    margin: 0 20px 0 0;
+    background-color: grey;
+    border-radius: 10px;
+    padding: 5px
+}
+
+.attendance-summary-property p{
+    margin: 0;
+    color: white;
+}
