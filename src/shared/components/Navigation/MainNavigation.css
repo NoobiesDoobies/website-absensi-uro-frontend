@@ -19,6 +19,7 @@
   
   .main-navigation__title {
     color: white;
+    font-size: 1.5em
   }
   
   .main-navigation__title a {
@@ -43,3 +44,10 @@
       display: block;
     }
   }
+
+  @media (max-width: 768px){
+    .main-navigation__drawer-nav-desktop{
+      display: none;
+    }
+  }
+
