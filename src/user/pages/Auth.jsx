@@ -1,24 +1,50 @@
-import React from "react";
+import { React, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
+import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import "./Auth.css";
 
 const Auth = () => {
-  const {
-    register,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const navigate = useNavigate();
+  const auth = useContext(AuthContext);
+
+  const [isLoginMode, setIsLoginMode] = useState(true);
+
+  const { register, control, handleSubmit } = useForm();
+
+  const switchModeHandler = () => {
+    setIsLoginMode((prevMode) => !prevMode);
+  };
+
+  const authSubmitHandler = (data) => {
+    console.log(data);
+    auth.login();
+    navigate("/")
+  };
+
+  const roles = [
+    "Ketua",
+    "Wakil Ketua",
+    "Manpro R1",
+    "Manpro R2",
+    "Kadiv Mekanik",
+    "Kadiv Kontrol",
+    "Kru Mekanik",
+    "Kru Kontrol",
+    "Official",
+  ];
+
+  const years = ["13", "14", "15"];
 
   return (
     <div className="form-wrapper">
       <form
         className="card auth-form"
-        onSubmit={handleSubmit((data) => console.log(data))}
+        onSubmit={handleSubmit((data) => authSubmitHandler(data))}
       >
         <div className="form-group">
-          <label>Email address</label>
+          <label>Alamat Email</label>
           <input
             type="email"
             className="form-control"
@@ -38,59 +64,70 @@ const Auth = () => {
             required
           />
         </div>
-        <div className="form-group">
-          <label>Nama Lengkap</label>
-          <input
-            type="name"
-            className="form-control"
-            placeholder="Nama Lengkap"
-            {...register("name", { required: true })}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Role</label>
-          <Controller
-            name="Role"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-            <select className="form-control"{...field} required>
-                <option value="">Select...</option>
-                <option value="Ketua">Ketua </option>
-                <option value="Wakil Ketua">Wakil Ketua </option>
-                <option value="Manpro R1">Manpro R1 </option>
-                <option value="Manpro R2">Manpro R2 </option>
-                <option value="Kadiv Mekanik">Kadiv Mekanik </option>
-                <option value="Kadiv Kontrol">Kadiv Kontrol </option>
-                <option value="Kru Mekanik">Kru Mekanik </option>
-                <option value="Kru Kontrol">Kru Kontrol </option>
-                <option value="Official">Official </option>
-            </select>
-          )}
-          ></Controller>
-        </div>
-        <div className="form-group">
-          <label>Kru Angkatan</label>
-          <Controller
-            name="Kru Angkatan"
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => (
-            <select className="form-control"{...field} required>
-                <option value="">...</option>
-                <option value="13">13</option>
-                <option value="14">14</option>
-                <option value="15">15</option>
-            </select>
-          )}
-          ></Controller>
-        </div>
 
+        {!isLoginMode && (
+          <>
+            <div className="form-group">
+              <label>Nama Lengkap</label>
+              <input
+                type="name"
+                className="form-control"
+                placeholder="Nama Lengkap"
+                {...register("name", { required: true })}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Role</label>
+              <Controller
+                name="Role"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <select className="form-control" {...field} required>
+                    <option value="">...</option>
+                    {roles.map((role) => {
+                      return (
+                        <option key={role} value={role}>
+                          {role}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+              ></Controller>
+            </div>
+            <div className="form-group">
+              <label>Kru Angkatan</label>
+              <Controller
+                name="Kru Angkatan"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <select className="form-control" {...field} required>
+                    <option value="">...</option>
+                    {years.map((year) => {
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+              ></Controller>
+            </div>
+          </>
+        )}
 
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
+        <a href="#" onClick={switchModeHandler}>
+          {isLoginMode
+            ? "Belum punya akun? Daftar disini"
+            : "Sudah punya akun? Login disini"}
+        </a>
       </form>
     </div>
   );
