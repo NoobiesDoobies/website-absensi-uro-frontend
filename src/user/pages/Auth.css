@@ -46,3 +46,7 @@
     height: 4em;
     width: 100%;
 }
+
+select{
+    overflow: auto;
+  }

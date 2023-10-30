@@ -1,5 +1,6 @@
 import { React, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
@@ -17,10 +18,34 @@ const Auth = () => {
     setIsLoginMode((prevMode) => !prevMode);
   };
 
-  const authSubmitHandler = (data) => {
-    console.log(data);
+  const authSubmitHandler = async (data) => {
+    console.log(JSON.stringify({...data}));
+    if (isLoginMode) {
+      fetch("http://localhost:5000/api/users/signup", {
+        header: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({...data}),
+      });
+    } else {
+      try {
+        const response = await fetch("http://localhost:5000/api/users/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const responseData = await response.json();
+        console.log(responseData);
+        
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     auth.login();
-    navigate("/")
   };
 
   const roles = [
@@ -35,7 +60,7 @@ const Auth = () => {
     "Official",
   ];
 
-  const years = ["13", "14", "15"];
+  const generations = [13, 14, 15];
 
   return (
     <div className="form-wrapper">
@@ -80,11 +105,15 @@ const Auth = () => {
             <div className="form-group">
               <label>Role</label>
               <Controller
-                name="Role"
+                name="position"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <select className="form-control" {...field} required>
+                  <select
+                    className="form-control scrollable-select"
+                    {...field}
+                    required
+                  >
                     <option value="">...</option>
                     {roles.map((role) => {
                       return (
@@ -100,16 +129,20 @@ const Auth = () => {
             <div className="form-group">
               <label>Kru Angkatan</label>
               <Controller
-                name="Kru Angkatan"
+                name="generation"
                 control={control}
                 rules={{ required: true }}
                 render={({ field }) => (
-                  <select className="form-control" {...field} required>
+                  <select
+                    className="form-control overflow-auto"
+                    {...field}
+                    required
+                  >
                     <option value="">...</option>
-                    {years.map((year) => {
+                    {generations.map((generation) => {
                       return (
-                        <option key={year} value={year}>
-                          {year}
+                        <option key={generation} value={generation}>
+                          {generation}
                         </option>
                       );
                     })}
