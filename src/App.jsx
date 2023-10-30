@@ -12,7 +12,11 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log("rendering app")
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserId] = useState("653fd2d2f4a60dc6cadbfa17");
+
   const login = useCallback(() => {
     setIsLoggedIn(true);
   }, []);
@@ -21,32 +25,55 @@ const App = () => {
     setIsLoggedIn(false);
   }, []);
 
+  const setAsAdmin = useCallback((role) => {
+    if (role === "admin") {
+      console.log("Admin");
+      setIsAdmin(true);
+    } else {
+      console.log("Not admin");
+    }
+    console.log(isAdmin);
+  }, []);
+
+  const setId = useCallback((id) => {
+    setUserId(id);
+  });
+
   let routes;
   if (isLoggedIn) {
     routes = (
-      <>
-        <Route path="/" />
-        <Route path="/kru" element={<Dashboard />} />
-        <Route path="/leaderboard" />
-        <Route path="/wfh" />
+      <Routes>
+        <Route path="/" element={<Dashboard/> }/>
+        {/* <Route path="/kru" /> */}
+        {/* <Route path="/leaderboard" /> */}
+        {/* <Route path="/wfh" /> */}
         <Route path="*" element={<Navigate to="/" replace />}></Route>
-      </>
+      </Routes>
     );
   } else {
     routes = (
-      <>
-        <Route path="/leaderboard" />
+      <Routes>
+        {/* <Route path="/leaderboard" /> */}
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<Navigate to="/auth" replace />}></Route>
-      </>
+      </Routes>
     );
   }
   return (
     // Auth context makes all children element can access this context
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{
+      isLoggedIn,
+      login,
+      logout,
+      isAdmin,
+      setAsAdmin,
+      userId,
+      setId,
+    }}
+    >
       <Router>
         <MainNavigation />
-        <Routes>{routes}</Routes>
+        {routes}
       </Router>
     </AuthContext.Provider>
   );

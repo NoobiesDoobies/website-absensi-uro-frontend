@@ -8,7 +8,6 @@ import SideDrawer from "./SideDrawer";
 import Backdrop from "../UIElements/Backdrop";
 
 const MainNavigation = (props) => {
-  console.log("main navigation rendered");
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const openDrawer = () => {
