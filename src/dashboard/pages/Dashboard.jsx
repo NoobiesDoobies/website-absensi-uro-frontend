@@ -23,6 +23,7 @@ const Dashboard = (props) => {
       console.log(err.message);
     }
   }
+  
   useEffect(() => {
     fetchData();
   }, []);
