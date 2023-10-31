@@ -10,6 +10,9 @@ const NavLinks = (props) => {
   return (
     <ul className="nav-links">
       <li>
+        <NavLink to="/attend">Attend</NavLink>
+      </li>
+      <li>
         <NavLink to="/kru">Attendance</NavLink>
       </li>
       <li>
@@ -31,10 +34,11 @@ const NavLinks = (props) => {
         </li>
       ) : (
         <li>
-          <NavLink to="/logout" onClick={auth.logout}>Logout</NavLink>
+          <NavLink to="/logout" onClick={auth.logout}>
+            Logout
+          </NavLink>
         </li>
       )}
-
     </ul>
   );
 };

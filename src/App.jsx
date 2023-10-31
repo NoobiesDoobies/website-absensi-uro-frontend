@@ -11,6 +11,7 @@ import { AuthContext } from "./shared/context/AuthContext";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 import MeetingForm from "./meetings/pages/MeetingForm";
+import Attend from "./user/pages/Attend"
 
 const App = () => {
   console.log("rendering app");
@@ -58,6 +59,7 @@ const App = () => {
         {/* <Route path="/kru" /> */}
         {/* <Route path="/leaderboard" /> */}
         {/* <Route path="/wfh" /> */}
+        <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="*" element={<Navigate to="/" replace />}></Route>
       </Routes>
