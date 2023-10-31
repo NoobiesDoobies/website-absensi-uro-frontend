@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "./Auth.css";
+import "../../shared/components/UIElements/Form.css";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -28,16 +28,18 @@ const Auth = () => {
           "http://localhost:5000/api/users/login",
           data
         );
-        console.log(response.data.user.id);
         setIsLoading(false);
-        auth.setAsAdmin(response.data.user.role);
-        auth.login();
-        auth.setId(response.data.user.id);
+
+        const { userId, email, isAdmin, token } = response.data;
+        auth.login(userId, email, isAdmin, token);
       } catch (err) {
-        setIsLoading(false);
         console.log(err);
-        setError(err.message);
-        alert(err.message);
+        if (err.response) {
+          console.log(err.response);
+          setError(err.response.data.message);
+          alert(err.response.data.message);
+        }
+        setIsLoading(false);
       }
     } else {
       try {
@@ -45,70 +47,22 @@ const Auth = () => {
           "http://localhost:5000/api/users/signup",
           data
         );
-        console.log(response.data.user.id);
+        console.log(response.data);
+        const { userId, email, isAdmin, token } = response.data;
+        auth.login(userId, email, isAdmin, token);
         setIsLoading(false);
-        auth.setAsAdmin(response.data.user.role);
-        auth.login();
-        auth.setId(response.data.user.id);
       } catch (err) {
-        setIsLoading(false);
         console.log(err);
-        setError(err.message);
-        alert(err.message);
+        if (err.response) {
+          console.log(err.response);
+          setError(err.response.data.message);
+          alert(err.response.data.message);
+        }
+
+        setIsLoading(false);
       }
     }
   };
-
-  //   if (isLoginMode) {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/users/login", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(data),
-  //       });
-  //       if (!response.ok) {
-  //         console.log("error code 400-ish");
-  //         throw new Error(responseData.message);
-  //       }
-
-  //       const responseData = await response.json();
-
-  //       setIsLoading(false);
-  //       auth.login();
-  //       // auth.setAsAdmin()
-  //     } catch (err) {
-  //       setIsLoading(false);
-  //       setError(err.message || "An unknown error occured");
-  //       console.log(err);
-  //     }
-  //   } else {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/users/signup", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(data),
-  //       });
-
-  //       // true if status code is 200-ish
-  //       if (!response.ok) {
-  //         console.log("error code 400-ish");
-  //         throw new Error(responseData.message);
-  //       }
-  //       const responseData = await response.json();
-
-  //       setIsLoading(false);
-  //       auth.login();
-  //     } catch (err) {
-  //       setIsLoading(false);
-  //       setError(err.message || "An unknown error occured");
-  //       alert(err.message);
-  //     }
-  //   }
-  // };
 
   const roles = [
     "Ketua",
@@ -216,15 +170,16 @@ const Auth = () => {
               </div>
             </>
           )}
-
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-          <a href="#" onClick={switchModeHandler}>
-            {isLoginMode
-              ? "Belum punya akun? Daftar disini"
-              : "Sudah punya akun? Login disini"}
-          </a>
+          <div className="submit-button-wrapper">
+            <a href="#" onClick={switchModeHandler}>
+              {isLoginMode
+                ? "Belum punya akun? Daftar disini"
+                : "Sudah punya akun? Login disini"}
+            </a>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     </>
