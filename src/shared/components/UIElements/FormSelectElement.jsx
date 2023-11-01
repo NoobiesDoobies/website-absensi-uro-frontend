@@ -1,36 +1,35 @@
 import React from "react";
-import {Controller} from "react-hook-form";
 
 import "./Form.css";
 
 const FormSelectElement = ({
   name,
   label,
-  control,
+  register,
   isRequired,
   optionList,
   multiple = false,
+  isEditingMode = true,
+  defaultValue = "",
 }) => {
   return (
     <div className="form-group">
       <label>{label}</label>
-      <Controller
+
+      <select
         name={name}
-        control={control}
-        rules={{ required: { isRequired } }}
-        render={({ field }) => (
-          <select className="form-control overflow-auto" {...field} required>
-            <option value="">...</option>
-            {optionList.map((opt) => {
-              return (
-                <option key={opt} value={opt}>
-                  {opt}
-                </option>
-              );
-            })}
-          </select>
-        )}
-      />
+        className="form-control overflow-auto"
+        {...register(name, { required: true })}
+      >
+        <option value="">...</option>
+        {optionList.map((opt) => {
+          return (
+            <option key={opt} value={opt}>
+              {opt}
+            </option>
+          );
+        })}
+      </select>
     </div>
   );
 };

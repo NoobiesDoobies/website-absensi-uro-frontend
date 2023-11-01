@@ -7,8 +7,6 @@ import { useSearchParams } from "react-router-dom";
 import { AuthContext } from "../../shared/context/AuthContext";
 
 const Dashboard = (props) => {
-  // const uid = searchParams.get('uid');
-  console.log("rendering");
   const auth = useContext(AuthContext);
   const [data, setData] = useState(null);
 
@@ -18,18 +16,19 @@ const Dashboard = (props) => {
         `http://localhost:5000/api/users/${auth.userId}`
       );
       setData(response.data.user);
-      console.log(data)
     } catch (err) {
       console.log(err.message);
     }
   }
-  
+
   useEffect(() => {
     fetchData();
   }, []);
 
   return (
     <>
+      <KruDetails {...data} />
+      <AttendanceHistory {...data} />
       <div>halo</div>
     </>
   );

@@ -13,7 +13,7 @@ const NavLinks = (props) => {
         <NavLink to="/attend">Attend</NavLink>
       </li>
       <li>
-        <NavLink to="/kru">Attendance</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
       <li>
         <NavLink to="/leaderboard">Leaderboard</NavLink>
@@ -21,6 +21,11 @@ const NavLinks = (props) => {
       {auth.isLoggedIn && (
         <li>
           <NavLink to="/wfh">WFH</NavLink>
+        </li>
+      )}
+      {auth.isLoggedIn && (
+        <li>
+          <NavLink to="/update-profile">Update Profile</NavLink>
         </li>
       )}
       {auth.isLoggedIn && auth.isAdmin && (

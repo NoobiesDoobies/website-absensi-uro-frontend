@@ -11,7 +11,7 @@ import "../../shared/components/UIElements/Form.css";
 
 const MeetingForm = () => {
   const auth = useContext(AuthContext);
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit, register } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -73,7 +73,7 @@ const MeetingForm = () => {
         <FormSelectElement
           name={"division"}
           label={"Division"}
-          control={control}
+          register={register}
           isRequired={true}
           optionList={["Both", "Mekanik", "Kontrol"]}
           multiple={true}
@@ -82,7 +82,7 @@ const MeetingForm = () => {
         <FormSelectElement
           name={"day"}
           label={"Day"}
-          control={control}
+          register={register}
           isRequired={true}
           optionList={days}
         />
@@ -90,7 +90,7 @@ const MeetingForm = () => {
         <FormSelectElement
           name={"hour"}
           label={"Hour"}
-          control={control}
+          register={register}
           isRequired={true}
           optionList={hours}
         />
@@ -98,7 +98,7 @@ const MeetingForm = () => {
         <FormSelectElement
           name={"minute"}
           label={"Minute"}
-          control={control}
+          register={register}
           isRequired={true}
           optionList={minutes}
         />

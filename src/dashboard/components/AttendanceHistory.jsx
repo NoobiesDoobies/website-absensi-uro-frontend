@@ -1,7 +1,7 @@
 import React from "react";
 import "./AttendanceHistory.css";
 
-const AttendanceHistory = (props) => {
+const AttendanceHistory = ({meetingsAttended}) => {
   return (
     <>
       <h1>Attendance History</h1>
