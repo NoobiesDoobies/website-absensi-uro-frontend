@@ -58,13 +58,13 @@ const App = () => {
   if (isLoggedIn) {
     routes = (
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/dashboard/:uid" element={<Dashboard />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/wfh" element={<WFH />} />
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="*" element={<Navigate to="/" replace />}></Route>
+        <Route path="*" element={<Navigate to={`/dashboard/${userId}`} replace />} />
       </Routes>
     );
   } else {
