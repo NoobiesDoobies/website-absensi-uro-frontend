@@ -27,9 +27,9 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <KruDetails {...data} />
-      <AttendanceHistory {...data} />
-      <div>halo</div>
+  <div>
+    hao
+  </div>
     </>
   );
 };

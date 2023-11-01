@@ -24,7 +24,7 @@ const UpdateProfile = () => {
     setIsEditingMode(!isEditingMode);
   };
 
-  const authSubmitHandler = async (submittedData) => {
+  const updateProfileSubmitHandler = async (submittedData) => {
     setIsLoading(true);
     try {
       const response = await axios.patch(
@@ -36,7 +36,9 @@ const UpdateProfile = () => {
           },
         }
       );
+      console.log(response.data)
       setIsLoading(false);
+      alert("Profile updated successfully");
     } catch (err) {
       console.log(err);
       if (err.response) {
@@ -107,7 +109,7 @@ const UpdateProfile = () => {
           <form
             className="card auth-form"
             onSubmit={handleSubmit((submittedData) =>
-              authSubmitHandler(submittedData)
+              updateProfileSubmitHandler(submittedData)
             )}
           >
             <FormEditElement

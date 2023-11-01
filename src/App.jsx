@@ -11,8 +11,10 @@ import { AuthContext } from "./shared/context/AuthContext";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 import MeetingForm from "./meetings/pages/MeetingForm";
-import Attend from "./user/pages/Attend"
+import Attend from "./user/pages/Attend";
 import UpdateProfile from "./user/pages/UpdateProfile";
+import Leaderboard from "./user/pages/Leaderboard";
+import WFH from "./user/pages/WFH";
 
 const App = () => {
   console.log("rendering app");
@@ -43,7 +45,7 @@ const App = () => {
       );
     }
   }, [login]);
-  
+
   const logout = useCallback(() => {
     setIsLoggedIn(false);
     setIsAdmin(false);
@@ -57,9 +59,8 @@ const App = () => {
     routes = (
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        {/* <Route path="/kru" /> */}
-        {/* <Route path="/leaderboard" /> */}
-        {/* <Route path="/wfh" /> */}
+        <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/wfh" element={<WFH />} />
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
@@ -69,7 +70,7 @@ const App = () => {
   } else {
     routes = (
       <Routes>
-        {/* <Route path="/leaderboard" /> */}
+        <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="*" element={<Navigate to="/auth" replace />}></Route>
       </Routes>

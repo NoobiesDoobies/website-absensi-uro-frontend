@@ -1,0 +1,71 @@
+
+  /* Increase font size for larger screens */
+  @media (min-width: 768px) {
+    .leaderboard-card {
+      font-size: 1.5em;
+    }
+  }
+  
+
+.leaderboard-card{
+    margin: 2%;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 0
+}
+
+.leaderboard-card-body{
+    display: grid;
+     grid-template-columns: 1fr 5fr 1fr;
+    padding: 2%;
+}
+
+.leaderboard-card-body div{
+    display: flex;
+    align-items: center;
+}
+
+.leaderboard-card-body .total-meeting-attended{
+    justify-self: flex-end;
+    background-color: #00ff6a;
+    border-radius: 50%;
+    width:  2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboard-card-body .rank{
+    background-color: rgb(172, 167, 167);
+    border-radius: 50%;
+    width:  2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leaderboard-card-body .trophy{
+  width:  1.5em;
+  height: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-self: flex-start;
+  align-self: center;
+  margin-left: 0.25em
+}
+
+.rank-1{
+  color: #ffd700;
+}
+
+.rank-2{
+  color: #c0c0c0;
+}
+
+.rank-3{
+  color: #cd7f32;
+}

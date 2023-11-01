@@ -11,7 +11,12 @@ const Attend = () => {
     try {
       const response = await axios.post(
         `http://localhost:5000/api/users/attend`,
-        { userId: auth.userId }
+        { userId: auth.userId },
+        {
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          }
+        }
       );
       setIsRequested(true);
       console.log(response.data);
