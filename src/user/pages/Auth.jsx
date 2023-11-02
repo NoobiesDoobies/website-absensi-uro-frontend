@@ -5,7 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/UIElements/Form.css";
+import "../../shared/components/FormElements/Form.css";
 
 const Auth = () => {
   const navigate = useNavigate();

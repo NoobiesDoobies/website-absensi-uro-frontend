@@ -5,10 +5,11 @@ import axios from "axios";
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import FormEditElement from "../../shared/components/UIElements/FormEditElement";
-import FormSelectElement from "../../shared/components/UIElements/FormSelectElement";
-import "../../shared/components/UIElements/Form.css";
-import "./UpdateProfile.css"
+import FormEditElement from "../../shared/components/FormElements/FormEditElement";
+import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
+import "../../shared/components/FormElements/Form.css";
+import "./UpdateProfile.css";
 
 const UpdateProfile = () => {
   const auth = useContext(AuthContext);
@@ -27,16 +28,23 @@ const UpdateProfile = () => {
   const updateProfileSubmitHandler = async (submittedData) => {
     setIsLoading(true);
     try {
+      const formData = new FormData();
+      formData.append("email", submittedData.email);
+      formData.append("name", submittedData.name);
+      formData.append("password", submittedData.password);
+      formData.append("position", submittedData.position);
+      formData.append("generation", submittedData.generation);
+      formData.append("image", submittedData.image[0]);
       const response = await axios.patch(
-        `http://localhost:5000/api/users/${auth.userId}`,
-        submittedData,
+        `http://localhost:5000/api/users`,
+        formData,
         {
           headers: {
             Authorization: "Bearer " + auth.token,
           },
         }
       );
-      console.log(response.data)
+      console.log(response.data.user);
       setIsLoading(false);
       alert("Profile updated successfully");
     } catch (err) {
@@ -112,6 +120,11 @@ const UpdateProfile = () => {
               updateProfileSubmitHandler(submittedData)
             )}
           >
+            <ImageUpload
+              register={register}
+              name="image"
+              isEditingMode={isEditingMode}
+            />
             <FormEditElement
               label="Email"
               type="email"
@@ -157,7 +170,7 @@ const UpdateProfile = () => {
               isEditingMode={isEditingMode}
             />
 
-            <div className="button-wrapper" >
+            <div className="button-wrapper">
               <button className="btn btn-primary" onClick={toggleEditingMode}>
                 Edit
               </button>

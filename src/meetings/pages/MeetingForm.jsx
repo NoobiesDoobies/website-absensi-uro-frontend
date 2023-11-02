@@ -5,9 +5,9 @@ import DatePicker from "react-datepicker";
 import axios from "axios";
 
 import { AuthContext } from "../../shared/context/AuthContext";
-import FormSelectElement from "../../shared/components/UIElements/FormSelectElement";
+import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/UIElements/Form.css";
+import "../../shared/components/FormElements/Form.css";
 
 const MeetingForm = () => {
   const auth = useContext(AuthContext);
