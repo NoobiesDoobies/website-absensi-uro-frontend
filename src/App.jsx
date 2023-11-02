@@ -17,12 +17,10 @@ import Leaderboard from "./user/pages/Leaderboard";
 import WFH from "./user/pages/WFH";
 
 const App = () => {
-  console.log("rendering app");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
   const [token, setToken] = useState(null);
-
   const login = useCallback((userId, email, isAdmin, token) => {
     setIsLoggedIn(true);
     setIsAdmin(isAdmin);
@@ -44,7 +42,7 @@ const App = () => {
         storedData.token
       );
     }
-  }, [login]);
+  }, []);
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
@@ -64,7 +62,10 @@ const App = () => {
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="*" element={<Navigate to={`/dashboard/${userId}`} replace />} />
+        <Route
+          path="*"
+          element={<Navigate to={`/dashboard/${userId}`} replace />}
+        />
       </Routes>
     );
   } else {
@@ -89,7 +90,8 @@ const App = () => {
       }}
     >
       <Router>
-        <MainNavigation />
+        {/* MainNavigation will be rendered only if authContext is set*/}
+        {isLoggedIn && <MainNavigation />}
         {routes}
       </Router>
     </AuthContext.Provider>

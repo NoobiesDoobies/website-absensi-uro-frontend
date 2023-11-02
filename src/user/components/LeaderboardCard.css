@@ -75,6 +75,7 @@
   color: #333;
   transition: color 0.3s; /* Add a smooth transition effect for color changes */
   text-decoration: none;
+  display: flex;
 }
 
 .profile-nav-link:hover {

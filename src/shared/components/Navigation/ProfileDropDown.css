@@ -1,0 +1,22 @@
+.profile-drop-down__title__profile-image {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-right: 0;
+  border-radius: 50%;
+}
+
+.dropdown-item{
+  position: relative;
+}
+
+.dropdown-menus{
+  background-color:white;
+}
+
+.profile-drop-down__profile-image-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 0;
+  align-items: flex-end;
+  align-self: flex-start;
+}

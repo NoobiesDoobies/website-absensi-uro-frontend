@@ -27,25 +27,15 @@ const NavLinks = (props) => {
           <NavLink to="/wfh">WFH</NavLink>
         </li>
       )}
-      {auth.isLoggedIn && (
-        <li>
-          <NavLink to="/update-profile">Update Profile</NavLink>
-        </li>
-      )}
+
       {auth.isLoggedIn && auth.isAdmin && (
         <li>
           <NavLink to="/create-meeting">Create Meeting</NavLink>
         </li>
       )}
-      {!auth.isLoggedIn ? (
+      {!auth.isLoggedIn && (
         <li>
           <NavLink to="/auth">Sign In</NavLink>
-        </li>
-      ) : (
-        <li>
-          <NavLink to="/logout" onClick={auth.logout}>
-            Logout
-          </NavLink>
         </li>
       )}
     </ul>
