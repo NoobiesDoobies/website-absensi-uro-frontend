@@ -23,10 +23,9 @@ main {
   }
 }
 
-
 @media (max-width: 768px) {
   .main-header {
     justify-content: space-between;
-    grid-template-columns:1fr 5fr 1fr;
+    grid-template-columns: 1fr 5fr 1fr;
   }
 }

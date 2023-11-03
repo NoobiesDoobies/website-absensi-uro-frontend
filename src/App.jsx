@@ -26,6 +26,7 @@ const App = () => {
     setIsAdmin(isAdmin);
     setUserId(userId);
     setToken(token);
+
     localStorage.setItem(
       "userData",
       JSON.stringify({ userId, email, isAdmin, token })
@@ -42,7 +43,7 @@ const App = () => {
         storedData.token
       );
     }
-  }, []);
+  }, [login]);
 
   const logout = useCallback(() => {
     setIsLoggedIn(false);
@@ -51,6 +52,13 @@ const App = () => {
     setToken(null);
     localStorage.removeItem("userData");
   }, []);
+
+  const LogoutWrapper = () => {
+    useEffect(() => {
+      logout();
+    }, []);
+    return null;
+  }
 
   let routes;
   if (isLoggedIn) {
@@ -62,6 +70,7 @@ const App = () => {
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
+        <Route path="/logout" element={<LogoutWrapper/>} />
         <Route
           path="*"
           element={<Navigate to={`/dashboard/${userId}`} replace />}
@@ -91,7 +100,7 @@ const App = () => {
     >
       <Router>
         {/* MainNavigation will be rendered only if authContext is set*/}
-        {isLoggedIn && <MainNavigation />}
+        <MainNavigation/>
         {routes}
       </Router>
     </AuthContext.Provider>

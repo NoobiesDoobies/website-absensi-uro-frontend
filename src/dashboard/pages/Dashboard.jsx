@@ -9,23 +9,20 @@ import { useSearchParams } from "react-router-dom";
 const Dashboard = (props) => {
   const [data, setData] = useState(null);
   const {uid} = useParams();
-  console.log(uid);
-
-
-  async function fetchData() {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/users/${uid}`
-      );
-      setData(response.data.user);
-    } catch (err) {
-      console.log(err.message);
-    }
-  }
 
   useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/users/${uid}`
+        );
+        setData(response.data.user);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
     fetchData();
-  }, []);
+  }, [uid]);
 
   return (
     <>

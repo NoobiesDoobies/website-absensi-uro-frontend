@@ -31,7 +31,6 @@ const UpdateProfile = () => {
       const formData = new FormData();
       formData.append("email", submittedData.email);
       formData.append("name", submittedData.name);
-      formData.append("password", submittedData.password);
       formData.append("position", submittedData.position);
       formData.append("generation", submittedData.generation);
       formData.append("image", submittedData.image[0]);
@@ -121,6 +120,7 @@ const UpdateProfile = () => {
             )}
           >
             <ImageUpload
+              label="Foto Profil"
               register={register}
               name="image"
               isEditingMode={isEditingMode}
@@ -130,15 +130,6 @@ const UpdateProfile = () => {
               type="email"
               name="email"
               placeholder={data.email}
-              register={register}
-              isEditingMode={isEditingMode}
-            />
-
-            <FormEditElement
-              label="Password"
-              type="password"
-              name="password"
-              placeholder="Password"
               register={register}
               isEditingMode={isEditingMode}
             />

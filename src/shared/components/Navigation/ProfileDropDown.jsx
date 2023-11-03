@@ -11,13 +11,13 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   const auth = useContext(AuthContext);
   const [showDropDown, setShowDropDown] = useState(false);
 
-  console.log(dropDownOptions);
 
   const toggleDropDown = () => {
     setShowDropDown(!showDropDown);
   };
 
   const dropDownItemComponent = dropDownOptions.map((option, i) => {
+
     return (
       <NavLink className="dropdown-item" key={i} to={option.to}>
         {option.text}

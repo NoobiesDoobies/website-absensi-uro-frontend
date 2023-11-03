@@ -1,4 +1,4 @@
-import React, { useState, useFetch, useContext } from "react";
+import React, { useState, useFetch, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
@@ -9,27 +9,30 @@ import SideDrawer from "./SideDrawer";
 import Backdrop from "../UIElements/Backdrop";
 import { AuthContext } from "../../context/AuthContext";
 import "./MainNavigation.css";
-import { useEffect } from "react";
 
-const MainNavigation = (props) => {
+const MainNavigation = (props, {onLogout}) => {
   const auth = useContext(AuthContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
 
-  const fetchProfileImage = async () => {
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/users/${auth.userId}`
-      );
-      setProfileImage(response.data.user.image);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
-    fetchProfileImage();
-  }, []);
+
+    const fetchProfileImage = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/users/${auth.userId}`
+        );
+        setProfileImage(response.data.user.image);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    if (auth.isLoggedIn) {
+      fetchProfileImage();
+    }
+  }, [auth.isLoggedIn, auth.userId]);
 
   const openDrawer = () => {
     setIsDrawerOpen(true);

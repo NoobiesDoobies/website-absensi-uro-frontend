@@ -1,13 +1,20 @@
 import React from "react";
 
+import "./Form.css"
 import "./ImageUpload.css";
 
-const ImageUpload = ({ register, name }) => {
+const ImageUpload = ({ register, name, label }) => {
   return (
     <>
       <div className="form-group">
-        <div className="form-control">
-          <input type="file" name={name} {...register(name)} />
+        <label >{label}</label>
+        <div className="form-control form-control-file-input">
+          <input
+            className="file-input"
+            type="file"
+            name={name}
+            {...register(name)}
+          />
         </div>
       </div>
     </>
