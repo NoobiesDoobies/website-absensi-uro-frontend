@@ -18,24 +18,32 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   };
 
   const dropDownItemComponent = dropDownOptions.map((option, i) => {
-    return <NavLink className="dropdown-item" key={i} to={option.to}>{option.text}</NavLink>;
+    return (
+      <NavLink className="dropdown-item" key={i} to={option.to}>
+        {option.text}
+      </NavLink>
+    );
   });
 
   const dropDownMenu = (
-    <div className="dropdown-menus" aria-labelledby="dropdownMenuButton" >{dropDownItemComponent}</div>
+    <div className="dropdown-menus" aria-labelledby="dropdownMenuButton">
+      {dropDownItemComponent}
+    </div>
   );
 
   return (
-    <div className="profile-drop-down__profile-image-container">
-      <button
-        className="btn btn-transparent dropdown-toggle "
-        onClick={toggleDropDown}
-      >
-        <img
-          src={imageURL}
-          className="profile-drop-down__title__profile-image"
-        ></img>
-      </button>
+    <div className="profile-drop-down__wrapper">
+      <div className="profile-drop-down__profile-image-container">
+        <button
+          className="btn btn-transparent dropdown-toggle "
+          onClick={toggleDropDown}
+        >
+          <img
+            src={imageURL}
+            className="profile-drop-down__title__profile-image"
+          ></img>
+        </button>
+      </div>
       {showDropDown && dropDownMenu}
     </div>
   );
