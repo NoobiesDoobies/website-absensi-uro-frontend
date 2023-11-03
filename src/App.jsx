@@ -13,7 +13,9 @@ import Auth from "./user/pages/Auth";
 import MeetingForm from "./meetings/pages/MeetingForm";
 import Attend from "./user/pages/Attend";
 import UpdateProfile from "./user/pages/UpdateProfile";
+import UpdatePassword from "./user/pages/UpdatePassword"
 import Leaderboard from "./user/pages/Leaderboard";
+import MeetingSchedules from "./meetings/pages/MeetingSchedules";
 import WFH from "./user/pages/WFH";
 
 const App = () => {
@@ -70,6 +72,8 @@ const App = () => {
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<MeetingForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
+        <Route path="/update-password" element={<UpdatePassword/>}/>
+        <Route path="/meeting-schedules" element={<MeetingSchedules/>}/>
         <Route path="/logout" element={<LogoutWrapper/>} />
         <Route
           path="*"

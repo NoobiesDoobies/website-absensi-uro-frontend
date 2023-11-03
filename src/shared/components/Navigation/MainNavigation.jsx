@@ -81,6 +81,10 @@ const MainNavigation = (props, {onLogout}) => {
                 text: "Update Profile",
               },
               {
+                to: "/update-password",
+                text: "Update Password"
+              },
+              {
                 to: "/logout",
                 text: "Logout",
               },

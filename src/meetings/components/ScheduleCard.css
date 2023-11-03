@@ -1,0 +1,8 @@
+.schedule-card{
+    min-width: 10em;
+}
+
+.card-body {
+    margin: 2%;
+    padding: 0;
+}
