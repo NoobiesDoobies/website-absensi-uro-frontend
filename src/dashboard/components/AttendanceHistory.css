@@ -20,5 +20,18 @@
 
 .attendance-history{
     padding: 1em;
-    
+}
+
+.meeting-card-wrapper{
+    margin: 0;
+    height: 100%;
+}
+
+.attendance-history-footer{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5em;
+    height: 1em;
+    padding: 0;
 }

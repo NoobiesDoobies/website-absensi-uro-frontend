@@ -6,13 +6,13 @@ import "./MeetingCard.css";
 // convert date to "Friday", dd/mm/yy
 function formatDateToDdMmYy(date) {
   const days = [
+    "Sunday",
     "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
     "Friday",
     "Saturday",
-    "Sunday",
   ];
   const dayName = days[date.getDay()];
   const day = date.getDate().toString().padStart(2, "0");

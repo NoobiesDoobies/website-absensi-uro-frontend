@@ -25,7 +25,7 @@ const ProfileSummary = ({
   return (
     <div className="card profile-summary">
       <h4 className="profile-summary-title card-title">Profile Summary</h4>
-      <div className="card-body profile-body">
+      <div className="profile-body">
         <div className="profile">
           <div className="profile-image-container">
             <img src={imageURL} alt="profile" className="profile-images" />
