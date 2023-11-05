@@ -24,8 +24,12 @@ const Dashboard = (props) => {
         setUserData(response.data.user);
         setUserMeetingsData(response.data.userMeetings);
         const meetings = response.data.userMeetings.map((userMeeting) => {
-          return userMeeting.meeting;
+          let meeting = userMeeting.meeting;
+          meeting.lateTime = userMeeting.lateTime;
+          meeting.attendedAt = userMeeting.attendedAt;
+          return meeting
         });
+
         setMeetingsData(meetings);
 
         setIsLoading(false);
@@ -40,6 +44,7 @@ const Dashboard = (props) => {
     fetchData();
   }, [uid]);
 
+  console.log(userMeetingsData)
 
   return (
     <>
@@ -54,7 +59,7 @@ const Dashboard = (props) => {
             meetings={userMeetingsData}
             imageURL={`http://localhost:5000/${userData.image}`}
           />
-          <AttendanceHistory />
+          <AttendanceHistory {...meetingsData}/>
         </div>
       )}
     </>

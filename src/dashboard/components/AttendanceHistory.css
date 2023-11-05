@@ -1,0 +1,24 @@
+
+
+@media (min-width: 768px){
+    .meeting-card-wrapper{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1em;
+    
+    }
+}
+
+@media (max-width: 768px){
+    .meeting-card-wrapper{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1em;
+    
+    }
+}
+
+.attendance-history{
+    padding: 1em;
+    
+}

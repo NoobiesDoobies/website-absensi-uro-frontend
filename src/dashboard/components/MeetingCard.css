@@ -1,0 +1,51 @@
+.meeting-card-body{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 0.5em;
+}
+
+.meeting-card-body .time{
+    grid-column: span 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.meeting-card-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.late-indicator{
+    justify-self: flex-end;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    border-style: solid;
+
+}
+
+.not-late{
+    background-color: rgba(0, 255, 106, 0.5);
+    border-color: rgba(0, 255, 106, 1);
+    color: rgb(10, 88, 44);
+}
+
+.late{
+    background-color: rgba(255, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 1);
+    color: rgb(88, 10, 10);
+}
+
+.schedule{
+    display:flex;
+    flex-direction: row;
+}
