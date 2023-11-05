@@ -40,12 +40,20 @@ const Dashboard = (props) => {
     fetchData();
   }, [uid]);
 
+
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {!isLoading && (
+      {userData && meetingsData && (
         <div className="dashboard">
-          <ProfileSummary />
+          <ProfileSummary
+            name={userData.name}
+            position={userData.position}
+            email={userData.email}
+            totalAttendance={userData.totalMeetingsAttended}
+            meetings={userMeetingsData}
+            imageURL={`http://localhost:5000/${userData.image}`}
+          />
           <AttendanceHistory />
         </div>
       )}

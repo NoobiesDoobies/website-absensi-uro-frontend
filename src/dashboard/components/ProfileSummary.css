@@ -1,0 +1,86 @@
+.profile-body{
+    display: flex;
+    flex-direction: column;
+    
+}
+.profile-summary{
+    padding: 1em;
+}
+
+.profile{
+    display: grid;
+    height: 4em;
+    width: 100%;
+    grid-template-columns: 4em 1fr;
+    grid-template-rows: 1fr 2fr;
+    justify-content: flex-start;
+    align-items: center;
+    grid-column-gap: 1em;
+}
+
+.profile-image-container{
+    grid-row: span 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-name{
+    font-weight: bold;
+}
+
+.profile-images{
+    /* center image */
+    width: 100%;
+    height: 100%;
+    object-position: center;
+    border-radius: 50%;
+    margin-right: 0;
+}
+
+.profile-detail{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.profile-detail-item{
+    margin-right: 0.5em;
+}
+
+.attendance-summary{
+    height: 100%;
+    padding-top: 1em;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 0.5em;
+}
+
+.attendance-summary-card{
+    display: grid;
+    grid-template-columns: 3em 3fr;
+}
+
+.attendance-summary-icon-wrapper{
+    grid-row: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.5em;
+}
+
+.attendance-summary-icon{
+    width: 100%;
+    height: 100%;
+    object-position: center;
+
+}
+
+.attendance-summary-stats{
+    /* center text */
+    object-position: center;
+    display: flex;
+    align-items: center;
+}
