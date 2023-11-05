@@ -4,9 +4,7 @@ import { FaTrophy } from "react-icons/fa6";
 
 import "./LeaderBoardCard.css";
 
-const LeaderBoardCard = ({ id, name, rank, meetingsAttended, image }) => {
-  console.log(image);
-  const totalMeetingAttended = meetingsAttended.length;
+const LeaderBoardCard = ({ id, name, rank, totalMeetingsAttended, image }) => {
 
   let rankComponent;
 
@@ -32,7 +30,7 @@ const LeaderBoardCard = ({ id, name, rank, meetingsAttended, image }) => {
           />
           <div>{name}</div>
         </NavLink>
-        <div className="total-meeting-attended">{totalMeetingAttended}</div>
+        <div className="total-meeting-attended">{totalMeetingsAttended}</div>
       </div>
     </li>
   );

@@ -105,7 +105,9 @@ const App = () => {
       <Router>
         {/* MainNavigation will be rendered only if authContext is set*/}
         <MainNavigation/>
-        {routes}
+        <div id="app-body">
+          {routes}
+        </div>
       </Router>
     </AuthContext.Provider>
   );

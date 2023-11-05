@@ -13,15 +13,14 @@ const Leaderboard = () => {
 
   const sortUsersAndGenerateIndex = () => {
     const sortedUsers = users.sort((a, b) => {
-      return b.meetingsAttended.length - a.meetingsAttended.length;
+      return b.totalMeetingsAttended - a.totalMeetingsAttended;
     });
 
     const rankList = [1];
-    let previousValue = 0;
 
     let j = 1;
     for (let i = 1; i < sortedUsers.length; i++) {
-      if(sortedUsers[i].meetingsAttended.length !== sortedUsers[i-1].meetingsAttended.length){
+      if(sortedUsers[i].totalMeetingsAttended !== sortedUsers[i-1].totalMeetingsAttended){
         j++;
         rankList.push(j)
         continue

@@ -1,12 +1,9 @@
 import React from "react";
+
 import "./AttendanceHistory.css";
 
-const AttendanceHistory = ({meetingsAttended}) => {
-  return (
-    <>
-      <h1>Attendance History</h1>
-    </>
-  );
+const AttendanceHistory = (props) => {
+  return <div>halo2</div>;
 };
 
 export default AttendanceHistory;

@@ -24,7 +24,6 @@ const MeetingForm = () => {
     if(data.division === "Both"){
       data.division = ["Kontrol", "Mekanik"]
     }
-    console.log(JSON.stringify(data));
     setIsLoading(true);
     try {
       const response = await axios.post(

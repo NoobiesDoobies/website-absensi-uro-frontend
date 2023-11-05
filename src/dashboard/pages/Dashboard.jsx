@@ -2,22 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import KruDetails from "../components/KRUDetails";
+import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import ProfileSummary from "../components/ProfileSummary";
 import AttendanceHistory from "../components/AttendanceHistory";
-import { useSearchParams } from "react-router-dom";
+import "./Dashboard.css";
 
 const Dashboard = (props) => {
-  const [data, setData] = useState(null);
-  const {uid} = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [userMeetingsData, setUserMeetingsData] = useState(null);
+  const [meetingsData, setMeetingsData] = useState(null);
+  const { uid } = useParams();
 
   useEffect(() => {
     async function fetchData() {
+      setIsLoading(true);
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/users/${uid}`
+          `http://localhost:5000/api/users/meetings/${uid}`
         );
-        setData(response.data.user);
+        setUserData(response.data.user);
+        setUserMeetingsData(response.data.userMeetings);
+        const meetings = response.data.userMeetings.map((userMeeting) => {
+          return userMeeting.meeting;
+        });
+        setMeetingsData(meetings);
+
+        setIsLoading(false);
       } catch (err) {
+        if (err.response) {
+          alert(err.response.data.message);
+        }
+        setIsLoading(false);
         console.log(err.message);
       }
     }
@@ -26,7 +42,13 @@ const Dashboard = (props) => {
 
   return (
     <>
-      <div>hao</div>
+      {isLoading && <LoadingSpinner />}
+      {!isLoading && (
+        <div className="dashboard">
+          <ProfileSummary />
+          <AttendanceHistory />
+        </div>
+      )}
     </>
   );
 };

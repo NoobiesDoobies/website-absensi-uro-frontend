@@ -1,5 +1,6 @@
 .schedule-card{
-    min-width: 10em;
+    width: 15em;
+    max-height: 10em;
 }
 
 .card-body {

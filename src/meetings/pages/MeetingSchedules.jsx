@@ -4,7 +4,7 @@ import axios from "axios";
 import ScheduleCard from "../components/ScheduleCard";
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "./MeetingSchedules.css"
+import "./MeetingSchedules.css";
 
 const MeetingSchedules = (props) => {
   const [data, setData] = useState(null);
@@ -30,21 +30,19 @@ const MeetingSchedules = (props) => {
         setIsLoading(false);
       }
     };
-    fetchMeetingSchedules();
+
+    if (auth.token) {
+      fetchMeetingSchedules();
+    }
   }, [auth.token]);
 
   return (
     <>
       <div className="meeting-schedules">
-      {
-        data && data.map((schedule)=>{
-            return (
-                <ScheduleCard key={schedule.id} {...schedule}/>
-            )
-        })
-            
-        
-      }
+        {data &&
+          data.map((schedule) => {
+            return <ScheduleCard key={schedule.id} {...schedule} />;
+          })}
 
         {isLoading && <LoadingSpinner />}
       </div>

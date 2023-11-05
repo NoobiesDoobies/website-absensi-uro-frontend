@@ -11,7 +11,6 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   const auth = useContext(AuthContext);
   const [showDropDown, setShowDropDown] = useState(false);
 
-
   const toggleDropDown = () => {
     setShowDropDown(!showDropDown);
   };
@@ -26,9 +25,9 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   });
 
   const dropDownMenu = (
-    <div className="dropdown-menus" aria-labelledby="dropdownMenuButton">
+    <button onClick={toggleDropDown} className="dropdown-menus" aria-labelledby="dropdownMenuButton">
       {dropDownItemComponent}
-    </div>
+    </button>
   );
 
   return (

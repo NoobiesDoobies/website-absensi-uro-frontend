@@ -9,13 +9,14 @@ function formatDateToDdMmYy(date) {
   }
 
 const ScheduleCard = ({division, day, dateEnd, hour, minute}) => {
+  const time = minute === 0? `${hour}:00` : `${hour}:${minute}`;
   return(
     <div className="card schedule-card">
         <div className="card-body">
             {day}
         </div>
         <div className="card-body">
-            {`${hour}:${minute}`}
+            {time}
         </div>
  
         <div className="card-body">

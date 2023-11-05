@@ -17,7 +17,6 @@ const MainNavigation = (props, {onLogout}) => {
 
 
   useEffect(() => {
-
     const fetchProfileImage = async () => {
       try {
         const response = await axios.get(
@@ -29,10 +28,10 @@ const MainNavigation = (props, {onLogout}) => {
       }
     };
 
-    if (auth.isLoggedIn) {
+    if (auth.userId) {
       fetchProfileImage();
     }
-  }, [auth.isLoggedIn, auth.userId]);
+  }, [auth.userId]);
 
   const openDrawer = () => {
     setIsDrawerOpen(true);

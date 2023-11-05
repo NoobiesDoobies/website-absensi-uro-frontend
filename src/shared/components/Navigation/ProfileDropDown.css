@@ -23,6 +23,8 @@
   padding: 0.5em;
 }
 
+
+
 .profile-drop-down__profile-image-container {
   margin-top: 0;
   align-self: center;
@@ -33,6 +35,7 @@
 }
 
 .profile-drop-down__wrapper {
+  margin-left: 5em;
   position: absolute;
   justify-self: flex-end;
   align-self: flex-start;
