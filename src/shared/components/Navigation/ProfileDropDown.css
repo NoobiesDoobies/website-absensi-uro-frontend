@@ -35,6 +35,8 @@
 }
 
 .profile-drop-down__wrapper {
+  min-height: 8vh;
+  max-height: 8vh;
   margin-left: 5em;
   position: absolute;
   justify-self: flex-end;
@@ -42,7 +44,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-top: 0.25em;
 }
 
 

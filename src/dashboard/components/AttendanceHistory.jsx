@@ -5,18 +5,17 @@ import "./AttendanceHistory.css";
 
 const AttendanceHistory = (props) => {
   const meetings = Object.values(props);
-  const slicedMeetings = meetings.slice(0, 6);
+  // create array three times meeting
+  const threeMeetings = meetings.concat(meetings, meetings);
   return (
     <div className="attendance-history card">
       <h4 className="card-title">Attendance History</h4>
       <div className="meeting-card-wrapper ">
-        {meetings.map((meeting, i) => {
+        {threeMeetings.map((meeting, i) => {
           return <MeetingCard key={i} {...meeting}/>;
         })}
       </div>
-      <div className="attendance-history-footer">
-        <a href="/meetings">View all</a>
-      </div>
+
     </div>
   );
 };
