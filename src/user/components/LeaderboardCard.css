@@ -8,6 +8,15 @@
 .leaderboard-card {
   margin: 2%;
   margin-bottom: 0;
+  margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+}
+
+.leaderboard-card-header {
+  margin: 2%;
+  margin-bottom: 0;
   display: flex;
   flex-direction: row;
   padding: 0;

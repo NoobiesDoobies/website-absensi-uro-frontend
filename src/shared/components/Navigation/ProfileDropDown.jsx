@@ -34,7 +34,7 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
     <div className="profile-drop-down__wrapper">
       <div className="profile-drop-down__profile-image-container">
         <button
-          className="btn btn-transparent dropdown-toggle "
+          className="dropdown-toggle "
           onClick={toggleDropDown}
         >
           <img

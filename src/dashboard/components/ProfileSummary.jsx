@@ -43,8 +43,7 @@ const ProfileSummary = ({
           </div>
           <div className="profile-name">{name}</div>
           <div className="profile-detail">
-            <div className="profile-detail-item">{position}</div>
-            <div className="profile-detail-item date-of-birth">{convertDate(new Date(dateOfBirth))}</div>
+            <div className="profile-detail-item">{`${position}, ${convertDate(new Date(dateOfBirth))}`}</div>
 
           </div>
         </div>

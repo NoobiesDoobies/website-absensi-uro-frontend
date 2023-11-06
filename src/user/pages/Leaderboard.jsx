@@ -57,7 +57,7 @@ const Leaderboard = () => {
     <>
       {isLoading && <LoadingSpinner asOverlay />}
       <ul className="leaderboard">
-        <li className="leaderboard-card card">
+        <li className="leaderboard-card-header card">
           <div className="leaderboard-card-body card-body">
             <div className="leader-board-rank">Rank</div>
             <div>Name</div>

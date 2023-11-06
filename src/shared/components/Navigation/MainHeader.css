@@ -1,11 +1,7 @@
 .main-header {
   min-width: 100vw;
   max-width: 100vw;
-
-  min-height: 8vh;
-  height: 8vh;
   display: grid;
-  justify-content: center;
   align-items: center;
   top: 0;
   left: 0;
@@ -22,11 +18,15 @@ main {
 @media (min-width: 768px) {
   .main-header {
     grid-template-columns: 1fr 15fr 1fr;
+    min-height: 8vh;
+    height: 8vh;
   }
 }
 
 @media (max-width: 768px) {
   .main-header {
     grid-template-columns: 1fr 5fr 1fr;
+    min-height: 10vh;
+    height: 10vh;
   }
 }

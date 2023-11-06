@@ -1,5 +1,6 @@
 .meeting-card-body{
     display:grid;
+    grid-row-gap: 0.5em;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr;
     padding: 0.5em;
@@ -19,7 +20,6 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 0.5em;
     font-size: small;
 }
 

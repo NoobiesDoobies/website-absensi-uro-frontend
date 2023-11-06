@@ -28,10 +28,9 @@ function formatTimeToMmSs(time) {
   return `${hour}:${minute}`;
 }
 
-const MeetingCard = ({ date, lateTime, attendedAt, unAttended=false }) => {
+const MeetingCard = ({ date, lateTime, attendedAt, isAttended }) => {
   let lateIndicatorElement;
-  console.log(unAttended)
-  if (unAttended) {
+  if (!isAttended) {
     lateIndicatorElement = <div className="late-indicator unattended meeting-card-item">unattended</div>;
   } else if (lateTime > 0) {
     lateIndicatorElement = <div className="late-indicator late meeting-card-item ">late</div>;
