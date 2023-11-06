@@ -19,13 +19,11 @@
   }
   
   .form-group {
-    margin: 0;
+    margin: 0.25em;
     width: 100%
   }
   
-  .form-group label {
-    margin: 0.5em;
-  }
+
   
   .form-group input {
     margin: 0;
@@ -39,7 +37,7 @@
     margin-top: 10%;
   }
   
-  .auth-form button {
+  .auth-form .submit-button {
     justify-self: flex-end;
     align-self: flex-end;
     margin-top: 1em;
@@ -64,4 +62,32 @@
     align-items: center;
     margin: 0;
     padding: 0;
+  }
+
+
+  .react-date-picker{
+    margin: 0;
+  }
+
+  .react-date-picker__clear-button{
+    display: none;
+  }
+
+  .react-date-picker__calendar-button{
+    display: none;
+  }
+
+  .react-calendar{
+  }
+
+  .react-calendar__tile{
+    width: 20%;
+  }
+
+  .react-calendar__navigation__label{
+    font-size: small
+  }
+  
+  .react-calendar__navigation{
+    margin: 0;
   }

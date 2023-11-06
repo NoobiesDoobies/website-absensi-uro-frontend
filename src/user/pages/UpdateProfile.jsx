@@ -1,9 +1,12 @@
 import { React, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import DatePicker from "react-date-picker";
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
+import { useForm, Controller } from "react-hook-form";
 
 import { AuthContext } from "../../shared/context/AuthContext";
-import { useForm } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
@@ -34,6 +37,7 @@ const UpdateProfile = () => {
       formData.append("position", submittedData.position);
       formData.append("generation", submittedData.generation);
       formData.append("image", submittedData.image[0]);
+      formData.append("dateOfBirth", submittedData.dateOfBirth);
       const response = await axios.patch(
         `http://localhost:5000/api/users`,
         formData,
@@ -160,12 +164,28 @@ const UpdateProfile = () => {
               defaultValue={data.generation}
               isEditingMode={isEditingMode}
             />
-
+            <div className="form-group date-picker">
+              <label>Tanggal lahir</label>
+              <Controller
+                name="dateOfBirth"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DatePicker
+                    className="form-control"
+                    {...field}
+                    placeHolderText="Select Date"
+                    onChange={(date) => field.onChange(date)}
+                    selected={field.value}
+                  />
+                )}
+              />
+            </div>
             <div className="button-wrapper">
-              <button className="btn btn-primary" onClick={toggleEditingMode}>
+              <button className="btn btn-primary submit-button" onClick={toggleEditingMode}>
                 Edit
               </button>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary submit-button">
                 Submit
               </button>
             </div>

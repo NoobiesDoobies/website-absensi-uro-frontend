@@ -1,6 +1,9 @@
 import { React, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import DatePicker from "react-date-picker";
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
@@ -168,6 +171,23 @@ const Auth = () => {
                   )}
                 ></Controller>
               </div>
+              <div className="form-group date-picker">
+                <label>Tanggal lahir</label>
+                <Controller
+                  name="dateOfBirth"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <DatePicker
+                      className="form-control"
+                      {...field}
+                      placeHolderText="Select Date"
+                      onChange={(date) => field.onChange(date)}
+                      selected={field.value}
+                    />
+                  )}
+                />
+              </div>
             </>
           )}
           <div className="submit-button-wrapper">
@@ -176,7 +196,7 @@ const Auth = () => {
                 ? "Belum punya akun? Daftar disini"
                 : "Sudah punya akun? Login disini"}
             </a>
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary submit-button">
               Submit
             </button>
           </div>
