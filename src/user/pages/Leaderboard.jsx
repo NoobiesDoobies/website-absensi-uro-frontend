@@ -3,6 +3,7 @@ import axios from "axios";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import LeaderBoardCard from "../components/LeaderboardCard";
+import "../components/LeaderboardCard.css";
 import "./Leaderboard.css";
 
 const Leaderboard = () => {
@@ -20,12 +21,15 @@ const Leaderboard = () => {
 
     let j = 1;
     for (let i = 1; i < sortedUsers.length; i++) {
-      if(sortedUsers[i].totalMeetingsAttended !== sortedUsers[i-1].totalMeetingsAttended){
+      if (
+        sortedUsers[i].totalMeetingsAttended !==
+        sortedUsers[i - 1].totalMeetingsAttended
+      ) {
         j++;
-        rankList.push(j)
-        continue
+        rankList.push(j);
+        continue;
       }
-      rankList.push(j)
+      rankList.push(j);
     }
     return { sortedUsers, rankList };
   };
@@ -53,6 +57,16 @@ const Leaderboard = () => {
     <>
       {isLoading && <LoadingSpinner asOverlay />}
       <ul className="leaderboard">
+        <li className="leaderboard-card card">
+          <div className="leaderboard-card-body card-body">
+            <div className="leader-board-rank">Rank</div>
+            <div>Name</div>
+            <div className="meeting-attended-wrapper">
+              <div >Late</div>
+              <div >Total</div>
+            </div>
+          </div>
+        </li>
         {sortedUsers.map((user, i) => {
           return <LeaderBoardCard key={user.id} rank={rankList[i]} {...user} />;
         })}

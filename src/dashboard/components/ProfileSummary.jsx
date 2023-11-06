@@ -4,6 +4,15 @@ import { AiFillClockCircle } from "react-icons/ai";
 
 import "./ProfileSummary.css";
 
+// convert date to 12 October 2003
+const convertDate = (dateObj) => {
+  const month = dateObj.toLocaleString("default", { month: "long" });
+  const day = dateObj.getDate();
+  const year = dateObj.getFullYear();
+
+  return `${day} ${month} ${year}`;
+};
+
 const ProfileSummary = ({
   name,
   position,
@@ -11,6 +20,7 @@ const ProfileSummary = ({
   totalAttendance,
   meetings,
   imageURL,
+  dateOfBirth
 }) => {
   let averageLateTime = 0;
 
@@ -22,6 +32,7 @@ const ProfileSummary = ({
 
   averageLateTime = averageLateTime / meetings.length / 60; // convert to mins
   averageLateTime = averageLateTime.toFixed(2);
+  averageLateTime = averageLateTime === "NaN" ? 0 : averageLateTime;
   return (
     <div className="card profile-summary">
       <h4 className="profile-summary-title card-title">Profile Summary</h4>
@@ -33,6 +44,8 @@ const ProfileSummary = ({
           <div className="profile-name">{name}</div>
           <div className="profile-detail">
             <div className="profile-detail-item">{position}</div>
+            <div className="profile-detail-item date-of-birth">{convertDate(new Date(dateOfBirth))}</div>
+
           </div>
         </div>
 

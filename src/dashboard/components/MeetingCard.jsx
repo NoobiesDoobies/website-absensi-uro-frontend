@@ -28,7 +28,16 @@ function formatTimeToMmSs(time) {
   return `${hour}:${minute}`;
 }
 
-const MeetingCard = ({ date, lateTime, attendedAt }) => {
+const MeetingCard = ({ date, lateTime, attendedAt, unAttended=false }) => {
+  let lateIndicatorElement;
+  console.log(unAttended)
+  if (unAttended) {
+    lateIndicatorElement = <div className="late-indicator unattended meeting-card-item">unattended</div>;
+  } else if (lateTime > 0) {
+    lateIndicatorElement = <div className="late-indicator late meeting-card-item ">late</div>;
+  } else {
+    lateIndicatorElement = <div className="late-indicator not-late meeting-card-item">on time</div>;
+  }
   return (
     <div className="card meeting-card">
       <div className="meeting-card-body card-body">
@@ -39,13 +48,8 @@ const MeetingCard = ({ date, lateTime, attendedAt }) => {
               {formatDateToDdMmYy(new Date(date))}
             </div>
           </div>
-          {lateTime > 0 ? (
-            <div className="late-indicator late meeting-card-item ">late</div>
-          ) : (
-            <div className="late-indicator not-late meeting-card-item">
-              on time
-            </div>
-          )}
+          
+          {lateIndicatorElement}
         </div>
 
         <div className="meeting-card-item schedule">

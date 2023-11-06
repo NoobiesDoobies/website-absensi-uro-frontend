@@ -24,16 +24,6 @@
   align-items: center;
 }
 
-.leaderboard-card-body .total-meeting-attended {
-  justify-self: flex-end;
-  background-color: #00ff6a;
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .leaderboard-card-body .rank {
   background-color: rgb(172, 167, 167);
@@ -89,7 +79,36 @@
   margin-right: 0.5em;
 }
 
+.meeting-attended-wrapper{
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+}
+
 .total-meeting-attended{
   justify-self: center;
   align-self: center;
+  justify-self: flex-end;
+  background-color: #00ff6a;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.total-late-meeting-attended{
+  justify-self: center;
+  align-self: center;
+  justify-self: flex-end;
+  background-color: #ff0000;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

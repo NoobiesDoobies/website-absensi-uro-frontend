@@ -49,6 +49,11 @@
     margin-right: 0.5em;
 }
 
+.profile-detail-item.date-of-birth{
+    margin-right: 0.5em;
+    grid-column: span 2;
+}
+
 .attendance-summary{
     height: 100%;
     padding-top: 1em;
