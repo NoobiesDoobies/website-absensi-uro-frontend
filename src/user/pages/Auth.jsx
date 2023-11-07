@@ -191,7 +191,7 @@ const Auth = () => {
             </>
           )}
           <div className="submit-button-wrapper">
-            <a href="#" onClick={switchModeHandler}>
+            <a href="#" className="login-switcher" onClick={switchModeHandler}>
               {isLoginMode
                 ? "Belum punya akun? Daftar disini"
                 : "Sudah punya akun? Login disini"}

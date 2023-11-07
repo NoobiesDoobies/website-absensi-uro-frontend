@@ -10,11 +10,11 @@ import Backdrop from "../UIElements/Backdrop";
 import { AuthContext } from "../../context/AuthContext";
 import "./MainNavigation.css";
 
-const MainNavigation = (props, {onLogout}) => {
+const MainNavigation = (props, { onLogout }) => {
   const auth = useContext(AuthContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
-
+  const [logo, setLogo] = useState(null);
 
   useEffect(() => {
     const fetchProfileImage = async () => {
@@ -64,7 +64,9 @@ const MainNavigation = (props, {onLogout}) => {
               };
             }}
           >
-            Absensi
+            <img 
+              src="http://localhost:5000/public/logo/logo_garudago.png"
+            />
           </NavLink>
         </h1>
 
@@ -81,7 +83,7 @@ const MainNavigation = (props, {onLogout}) => {
               },
               {
                 to: "/update-password",
-                text: "Update Password"
+                text: "Update Password",
               },
               {
                 to: "/logout",

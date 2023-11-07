@@ -12,14 +12,24 @@
   display: flex;
   flex-direction: row;
   padding: 0;
+  background-color: #748c9c;
+  color: white;
+  height: 4em;
+  justify-content: center;
+  align-items: center;
 }
 
 .leaderboard-card-header {
+  height: 3em;
   margin: 2%;
   margin-bottom: 0;
   display: flex;
   flex-direction: row;
   padding: 0;
+  background-color: #263754;
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
 
 .leaderboard-card-body {
@@ -32,7 +42,6 @@
   display: flex;
   align-items: center;
 }
-
 
 .leaderboard-card-body .rank {
   background-color: rgb(172, 167, 167);
@@ -69,16 +78,17 @@
 
 .profile-nav-link {
   text-decoration: none;
-  color: #333;
+  color: #263754;
   transition: color 0.3s; /* Add a smooth transition effect for color changes */
   text-decoration: none;
   display: flex;
 }
 
 .profile-nav-link:hover {
-  color: white;
-  background-color: #333;
+  color: #263754;
+  background-color: #fad456;
   text-decoration: none;
+  border-radius: 2em;
 }
 
 .profile-image {
@@ -88,7 +98,7 @@
   margin-right: 0.5em;
 }
 
-.meeting-attended-wrapper{
+.meeting-attended-wrapper {
   display: flex;
   flex-direction: row;
   gap: 0.5em;
@@ -96,7 +106,7 @@
   align-items: center;
 }
 
-.total-meeting-attended{
+.total-meeting-attended {
   justify-self: center;
   align-self: center;
   justify-self: flex-end;
@@ -109,7 +119,7 @@
   align-items: center;
 }
 
-.total-late-meeting-attended{
+.total-late-meeting-attended {
   justify-self: center;
   align-self: center;
   justify-self: flex-end;

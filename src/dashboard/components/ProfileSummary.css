@@ -6,6 +6,15 @@
 }
 .profile-summary{
     padding: 1em;
+    background-color: #263754;
+    color: #fad456;
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+    .profile-summary{
+        font-size: large;
+    }
 }
 
 .profile{
@@ -64,6 +73,9 @@
 .attendance-summary-card{
     display: grid;
     grid-template-columns: 3em 3fr;
+    background-color: #eed988;
+    color: #263754;
+    font-weight: bold;
 }
 
 .attendance-summary-icon-wrapper{

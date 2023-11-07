@@ -41,7 +41,7 @@ const MeetingCard = ({ date, lateTime, attendedAt, isAttended }) => {
     <div className="card meeting-card">
       <div className="meeting-card-body card-body">
         <div className="time">
-          <div className="meeting-card-item">
+          <div className="meeting-card-item meeting-card-date card">
             <AiOutlineClockCircle className="meeting-card-icon" />
             <div className="meeting-card-text">
               {formatDateToDdMmYy(new Date(date))}

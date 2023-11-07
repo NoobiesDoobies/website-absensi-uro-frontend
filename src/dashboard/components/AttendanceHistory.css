@@ -1,14 +1,21 @@
-.meeting-card-wrapper{
+.meeting-card-wrapper {
   overflow-y: scroll;
   grid-template-rows: repeat(2, 1fr);
-  max-height: 50vh;
-
 }
+
+.attendance-history {
+  padding: 1em;
+  display: flex;
+  background-color: #263754;
+  color: #fad456;
+}
+
 @media (min-width: 768px) {
   .meeting-card-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
+    max-height: 45vh;
   }
 }
 
@@ -17,10 +24,6 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
+    max-height: 40vh;
   }
-}
-
-.attendance-history {
-  padding: 1em;
-  display: flex;
 }
