@@ -16,7 +16,6 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   };
 
   const dropDownItemComponent = dropDownOptions.map((option, i) => {
-
     return (
       <NavLink className="dropdown-item" key={i} to={option.to}>
         {option.text}
@@ -25,25 +24,26 @@ const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   });
 
   const dropDownMenu = (
-    <button onClick={toggleDropDown} className="dropdown-menus" aria-labelledby="dropdownMenuButton">
+    <button
+      onClick={toggleDropDown}
+      className="dropdown-menus"
+      aria-labelledby="dropdownMenuButton"
+    >
       {dropDownItemComponent}
     </button>
   );
 
   return (
-    <div className="profile-drop-down__wrapper">
+    <div className="profile-drop-down__wrapper ">
       <div className="profile-drop-down__profile-image-container">
-        <button
-          className="dropdown-toggle "
-          onClick={toggleDropDown}
-        >
+        <button className="dropdown-toggle " onClick={toggleDropDown}>
           <img
             src={imageURL}
             className="profile-drop-down__title__profile-image"
           ></img>
         </button>
+        {showDropDown && dropDownMenu}
       </div>
-      {showDropDown && dropDownMenu}
     </div>
   );
 };
