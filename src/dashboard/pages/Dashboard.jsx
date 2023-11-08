@@ -83,7 +83,7 @@ const Dashboard = (props) => {
   return (
     <>
       {isLoading && <LoadingSpinner />}
-      {userData && meetingsAttendedData && (
+      {userData && meetingsAttendedData && allMeetingsData &&(
         <div className="dashboard">
           <ProfileSummary
             name={userData.name}

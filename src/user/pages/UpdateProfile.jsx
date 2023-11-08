@@ -8,6 +8,7 @@ import { useForm, Controller } from "react-hook-form";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
+
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
@@ -15,6 +16,14 @@ import FormSelectElement from "../../shared/components/FormElements/FormSelectEl
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import "../../shared/components/FormElements/Form.css";
 import "./UpdateProfile.css";
+
+// convert date to dd/mm/yyyy
+const formatDate = (d) => {
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
+  let year = d.getFullYear();
+  return [day, month, year].join("/");
+};
 
 const UpdateProfile = () => {
   const auth = useContext(AuthContext);
@@ -37,6 +46,7 @@ const UpdateProfile = () => {
       formData.append("email", submittedData.email);
       formData.append("name", submittedData.name);
       formData.append("position", submittedData.position);
+      formData.append("division", submittedData.division);
       formData.append("generation", submittedData.generation);
       formData.append("image", submittedData.image[0]);
       formData.append("dateOfBirth", submittedData.dateOfBirth);
@@ -73,58 +83,58 @@ const UpdateProfile = () => {
               label: "Ok",
             },
           ],
-        })
+        });
       }
       setIsLoading(false);
     }
-  };
-
-  const fetchUserData = async () => {
-    setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `http://localhost:5000/api/users/${auth.userId}`
-      );
-      setIsLoading(false);
-      setData(response.data.user);
-    } catch (err) {
-      console.log(err.message);
-      if (err.response) {
-        console.log(err.response);
-        setError(err.response.data.message);
-        confirmAlert({
-          title: "Error",
-          message: err.response.data.message,
-          buttons: [
-            {
-              label: "Ok",
-            },
-          ],
-        })
-      }
-      setIsLoading(false);
-    }
-  };
-
-  const setFormDefaultValue = (data) => {
-    reset({
-      email: data.email,
-      name: data.name,
-      position: data.position,
-      generation: data.generation,
-    });
   };
 
   useEffect(() => {
+    const fetchUserData = async () => {
+      setIsLoading(true);
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/users/${auth.userId}`
+        );
+        setIsLoading(false);
+        setData(response.data.user);
+      } catch (err) {
+        console.log(err.message);
+        if (err.response) {
+          console.log(err.response);
+          setError(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
+        }
+        setIsLoading(false);
+      }
+    };
     fetchUserData();
-  }, []);
+  }, [auth.userId]);
 
   useEffect(() => {
+    const setFormDefaultValue = (data) => {
+      reset({
+        email: data.email,
+        name: data.name,
+        position: data.position,
+        division: data.division,
+        generation: data.generation,
+        dateOfBirth: new Date(data.dateOfBirth),
+      });
+    };
     if (data != null) {
       console.log("Setting default value");
       setFormDefaultValue(data);
     }
-  }, [data]);
+  }, [data, reset]);
 
   const roles = [
     "Ketua",
@@ -137,6 +147,8 @@ const UpdateProfile = () => {
     "Kru Kontrol",
     "Official",
   ];
+
+  const divisions = ["Kontrol", "Mekanik", "Official"];
 
   const generations = [13, 14, 15];
 
@@ -183,7 +195,14 @@ const UpdateProfile = () => {
               defaultValue={data.position}
               isEditingMode={isEditingMode}
             />
-
+            <FormSelectElement
+              label="Divisi"
+              name="division"
+              register={register}
+              optionList={divisions}
+              defaultValue={data.division}
+              isEditingMode={isEditingMode}
+            />
             <FormSelectElement
               label="Kru Angkatan"
               name="generation"
@@ -210,7 +229,10 @@ const UpdateProfile = () => {
               />
             </div>
             <div className="button-wrapper">
-              <button className="btn btn-primary submit-button" onClick={toggleEditingMode}>
+              <button
+                className="btn btn-primary submit-button"
+                onClick={toggleEditingMode}
+              >
                 Edit
               </button>
               <button type="submit" className="btn btn-primary submit-button">

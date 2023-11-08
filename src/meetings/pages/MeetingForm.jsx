@@ -26,6 +26,9 @@ const MeetingForm = () => {
     if (data.division === "Both") {
       data.division = ["Kontrol", "Mekanik"];
     }
+    else if(data.division === "All"){
+      data.division = ["Kontrol", "Mekanik", "Official"]
+    }
     setIsLoading(true);
     try {
       const response = await axios.post(
@@ -93,7 +96,7 @@ const MeetingForm = () => {
           label={"Division"}
           register={register}
           isRequired={true}
-          optionList={["Both", "Mekanik", "Kontrol"]}
+          optionList={["Both", "Mekanik", "Kontrol", "Official", "All"]}
           multiple={true}
         />
 

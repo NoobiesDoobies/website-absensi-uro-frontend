@@ -97,6 +97,12 @@ const Auth = () => {
     "Official",
   ];
 
+  const divisions = [
+    "Kontrol",
+    "Mekanik",
+    "Official",
+  ]
+
   const generations = [13, 14, 15];
 
   return (
@@ -158,6 +164,30 @@ const Auth = () => {
                         return (
                           <option key={role} value={role}>
                             {role}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  )}
+                ></Controller>
+              </div>
+              <div className="form-group">
+                <label>Divisi</label>
+                <Controller
+                  name="division"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <select
+                      className="form-control overflow-auto"
+                      {...field}
+                      required
+                    >
+                      <option value="">...</option>
+                      {divisions.map((division) => {
+                        return (
+                          <option key={division} value={division}>
+                            {division}
                           </option>
                         );
                       })}
