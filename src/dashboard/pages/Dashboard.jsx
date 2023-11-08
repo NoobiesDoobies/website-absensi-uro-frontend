@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
@@ -38,7 +40,15 @@ const Dashboard = (props) => {
         setIsLoading(false);
       } catch (err) {
         if (err.response) {
-          alert(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
         }
         setIsLoading(false);
         console.log(err.message);
@@ -50,21 +60,25 @@ const Dashboard = (props) => {
   useEffect(() => {
     async function fetchAllMeetings() {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/meetings`,
-        );
+        const response = await axios.get(`http://localhost:5000/api/meetings`);
         setAllMeetingsData(response.data.meetings.reverse());
       } catch (err) {
         if (err.response) {
-          alert(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
         }
         console.log(err.message);
       }
     }
     fetchAllMeetings();
   }, []);
-
-
 
   return (
     <>
@@ -80,7 +94,10 @@ const Dashboard = (props) => {
             meetings={userMeetingsData}
             imageURL={`http://localhost:5000/${userData.image}`}
           />
-          <AttendanceHistory meetingsAttendedData={meetingsAttendedData} allMeetingsData={allMeetingsData} />
+          <AttendanceHistory
+            meetingsAttendedData={meetingsAttendedData}
+            allMeetingsData={allMeetingsData}
+          />
         </div>
       )}
     </>

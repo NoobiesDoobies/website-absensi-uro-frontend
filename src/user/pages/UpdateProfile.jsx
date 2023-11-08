@@ -5,6 +5,8 @@ import DatePicker from "react-date-picker";
 import "react-date-picker/dist/DatePicker.css";
 import "react-calendar/dist/Calendar.css";
 import { useForm, Controller } from "react-hook-form";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
@@ -49,13 +51,29 @@ const UpdateProfile = () => {
       );
       console.log(response.data.user);
       setIsLoading(false);
-      alert("Profile updated successfully");
+      confirmAlert({
+        title: "Success",
+        message: "Profile berhasil diubah",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
     } catch (err) {
       console.log(err);
       if (err.response) {
         console.log(err.response);
         setError(err.response.data.message);
-        alert(err.response.data.message);
+        confirmAlert({
+          title: "Error",
+          message: err.response.data.message,
+          buttons: [
+            {
+              label: "Ok",
+            },
+          ],
+        })
       }
       setIsLoading(false);
     }
@@ -72,7 +90,17 @@ const UpdateProfile = () => {
     } catch (err) {
       console.log(err.message);
       if (err.response) {
-        alert(err.response.data.message);
+        console.log(err.response);
+        setError(err.response.data.message);
+        confirmAlert({
+          title: "Error",
+          message: err.response.data.message,
+          buttons: [
+            {
+              label: "Ok",
+            },
+          ],
+        })
       }
       setIsLoading(false);
     }

@@ -51,11 +51,11 @@ const MeetingCard = ({ date, lateTime, attendedAt, isAttended }) => {
           {lateIndicatorElement}
         </div>
 
-        <div className="meeting-card-item schedule">
+        <div className="meeting-card-item schedule card">
           <div>Scheduled</div>
           <div>{formatTimeToMmSs(new Date(date))}</div>
         </div>
-        <div className="meeting-card-item schedule">
+        <div className="meeting-card-item schedule card">
           <div>Attended</div>
           <div>{formatTimeToMmSs(new Date(attendedAt))}</div>
         </div>

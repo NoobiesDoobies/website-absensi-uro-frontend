@@ -1,5 +1,7 @@
 import { React, useState, useContext } from "react";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm } from "react-hook-form";
@@ -16,10 +18,18 @@ const UpdatePassword = () => {
 
   const updatePasswordSubmitHandler = async (submittedData) => {
     setIsLoading(true);
-    if(submittedData.newPassword !== submittedData.comfirmNewPassword){
-        alert("Password baru dan comfirm password baru tidak sama");
-        setIsLoading(false);
-        return;
+    if (submittedData.newPassword !== submittedData.comfirmNewPassword) {
+      confirmAlert({
+        title: "Error",
+        message: "Password baru dan konfirmasi password baru tidak sama",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
+      setIsLoading(false);
+      return;
     }
     try {
       const response = await axios.patch(
@@ -33,13 +43,29 @@ const UpdatePassword = () => {
       );
       console.log(response.data.user);
       setIsLoading(false);
-      alert("Password updated successfully");
+      confirmAlert({
+        title: "Success",
+        message: "Password berhasil diubah",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
     } catch (err) {
       console.log(err);
       if (err.response) {
         console.log(err.response);
         setError(err.response.data.message);
-        alert(err.response.data.message);
+        confirmAlert({
+          title: "Error",
+          message: err.response.data.message,
+          buttons: [
+            {
+              label: "Ok",
+            },
+          ],
+        });
       }
       setIsLoading(false);
     }

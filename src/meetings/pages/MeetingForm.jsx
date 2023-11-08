@@ -3,6 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
@@ -21,8 +23,8 @@ const MeetingForm = () => {
 
   const meetingSubmitHandler = async (data) => {
     data.createdBy = auth.userId;
-    if(data.division === "Both"){
-      data.division = ["Kontrol", "Mekanik"]
+    if (data.division === "Both") {
+      data.division = ["Kontrol", "Mekanik"];
     }
     setIsLoading(true);
     try {
@@ -37,12 +39,29 @@ const MeetingForm = () => {
       );
       console.log(response.data);
       setIsLoading(false);
+      confirmAlert({
+        title: "Success",
+        message: "Meeting berhasil dijadwalkan",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
     } catch (err) {
       console.log(err);
       if (err.response) {
         console.log(err.response);
         setError(err.response.data.message);
-        alert(err.response.data.message);
+        confirmAlert({
+          title: "Error",
+          message: err.response.data.message,
+          buttons: [
+            {
+              label: "Ok",
+            },
+          ],
+        });
       }
       setIsLoading(false);
     }

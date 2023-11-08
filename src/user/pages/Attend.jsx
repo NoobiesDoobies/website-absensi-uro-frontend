@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { set } from "react-hook-form";
@@ -13,7 +15,7 @@ const Attend = () => {
     async function attend() {
       const data = {
         attendedAt: new Date(),
-      }
+      };
       try {
         const response = await axios.post(
           `http://localhost:5000/api/users/attend`,
@@ -28,7 +30,15 @@ const Attend = () => {
         console.log(response.data);
       } catch (err) {
         if (err.response) {
-          alert(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
         }
         console.log(err.message);
       }
@@ -39,9 +49,7 @@ const Attend = () => {
     }
   }, [auth.token]);
 
-  return (
-    <div>{response && <Navigate to="/dashboard" replace={true} />}</div>
-  );
+  return <div>{response && <Navigate to="/dashboard" replace={true} />}</div>;
 };
 
 export default Attend;

@@ -4,6 +4,8 @@ import axios from "axios";
 import DatePicker from "react-date-picker";
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
@@ -40,7 +42,15 @@ const Auth = () => {
         if (err.response) {
           console.log(err.response);
           setError(err.response.data.message);
-          alert(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
         }
         setIsLoading(false);
       }
@@ -59,7 +69,15 @@ const Auth = () => {
         if (err.response) {
           console.log(err.response);
           setError(err.response.data.message);
-          alert(err.response.data.message);
+          confirmAlert({
+            title: "Error",
+            message: err.response.data.message,
+            buttons: [
+              {
+                label: "Ok",
+              },
+            ],
+          });
         }
 
         setIsLoading(false);
