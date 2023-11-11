@@ -12,15 +12,13 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "../../shared/components/FormElements/Form.css";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 
-const MeetingForm = () => {
+const ScheduleForm = () => {
   const auth = useContext(AuthContext);
   const { control, handleSubmit, register } = useForm();
 
   const [isLoading, setIsLoading] = useState(false);
 
   const [isJustOnce, setIsJustOnce] = useState(false);
-
-  const [error, setError] = useState();
 
   const meetingSubmitHandler = async (data) => {
     data.createdBy = auth.userId;
@@ -55,7 +53,6 @@ const MeetingForm = () => {
       console.log(err);
       if (err.response) {
         console.log(err.response);
-        setError(err.response.data.message);
         confirmAlert({
           title: "Error",
           message: err.response.data.message,
@@ -175,4 +172,4 @@ const MeetingForm = () => {
   );
 };
 
-export default MeetingForm;
+export default ScheduleForm;

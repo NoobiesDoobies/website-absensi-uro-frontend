@@ -40,7 +40,28 @@ const Leaderboard = () => {
         setIsLoading(true);
         const response = await axios.get(`http://localhost:5000/api/users`);
         setUsers(response.data.users);
+        if (response.data.totalMeetingsAttended === 0) {
+          setUsers((prevUsers) => {
+            prevUsers.map((user) => {
+              user.totalMeetingsAttended = 0;
+              user.totalLateMeetingsAttended = 0;
+              return user;
+            });
+            return prevUsers;
+          });
+        }
+        else{
+          setUsers((prevUsers) => {
+            prevUsers.map((user, i) => {
+              user.totalMeetingsAttended = [response.data.totalMeetingsAttended[i]]
+              user.totalLateMeetingsAttended = [response.data.totalLateMeetingsAttended[i]]
+              return user;
+            });
+            return prevUsers;
+          })
+        }
         setIsLoading(false);
+        console.log(users);
       } catch (err) {
         setIsLoading(false);
       }
@@ -62,8 +83,8 @@ const Leaderboard = () => {
             <div className="leader-board-rank">Rank</div>
             <div>Name</div>
             <div className="meeting-attended-wrapper">
-              <div >Late</div>
-              <div >Total</div>
+              <div>Late</div>
+              <div>Total</div>
             </div>
           </div>
         </li>

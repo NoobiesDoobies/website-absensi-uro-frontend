@@ -2,11 +2,12 @@ import { React, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-date-picker";
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
+import "react-date-picker/dist/DatePicker.css";
+import "react-calendar/dist/Calendar.css";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
+import { FormContext } from "../../shared/context/FormContext";
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
@@ -15,7 +16,7 @@ import "../../shared/components/FormElements/Form.css";
 const Auth = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-
+  const formContext = useContext(FormContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { register, control, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
@@ -85,25 +86,15 @@ const Auth = () => {
     }
   };
 
-  const roles = [
-    "Ketua",
-    "Wakil Ketua",
-    "Manpro R1",
-    "Manpro R2",
-    "Kepala Divisi Mekanik",
-    "Kepala Divisi Kontrol",
-    "Kru Mekanik",
-    "Kru Kontrol",
-    "Official",
-  ];
-
-  const divisions = [
-    "Kontrol",
-    "Mekanik",
-    "Official",
-  ]
-
-  const generations = [13, 14, 15];
+  const roles = formContext.roles;
+  const divisions = formContext.divisions.filter((division) => {
+    return (
+      division === "Mekanik" ||
+      division === "Kontrol" ||
+      division === "Official"
+    );
+  });
+  const generations = formContext.generations;
 
   return (
     <>

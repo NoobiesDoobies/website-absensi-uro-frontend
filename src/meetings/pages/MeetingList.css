@@ -1,0 +1,8 @@
+.meeting-list{
+    padding: 5%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1em;
+    height: 100%;
+    place-items: center;
+}

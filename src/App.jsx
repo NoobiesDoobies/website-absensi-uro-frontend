@@ -10,13 +10,15 @@ import Dashboard from "./dashboard/pages/Dashboard";
 import { AuthContext } from "./shared/context/AuthContext";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
-import MeetingForm from "./meetings/pages/MeetingForm";
+import ScheduleForm from "./meetings/pages/ScheduleForm";
 import Attend from "./user/pages/Attend";
 import UpdateProfile from "./user/pages/UpdateProfile";
 import UpdatePassword from "./user/pages/UpdatePassword"
 import Leaderboard from "./user/pages/Leaderboard";
 import MeetingSchedules from "./meetings/pages/MeetingSchedules";
 import WFH from "./user/pages/WFH";
+import MeetingList from "./meetings/pages/MeetingList";
+import EditMeetingForm from "./meetings/pages/EditMeetingForm";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -70,10 +72,12 @@ const App = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/wfh" element={<WFH />} />
         <Route path="/attend" element={<Attend />} />
-        <Route path="/create-meeting" element={<MeetingForm />} />
+        <Route path="/create-meeting" element={<ScheduleForm />} />
         <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/update-password" element={<UpdatePassword/>}/>
         <Route path="/meeting-schedules" element={<MeetingSchedules/>}/>
+        <Route path="/meetings/edit/:mid" element={<EditMeetingForm/>}/>
+        <Route path="/meetings" element={<MeetingList/>}/>
         <Route path="/logout" element={<LogoutWrapper/>} />
         <Route
           path="*"

@@ -1,0 +1,9 @@
+.meeting-card{
+    width: 15em;
+    max-height: 10em;
+}
+
+.card-body {
+    margin: 2%;
+    padding: 0;
+}
