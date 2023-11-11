@@ -6,7 +6,7 @@ const FormEditElement = ({
   name,
   placeholder,
   register,
-  isEditingMode,
+  isEditingMode = true,
 }) => {
   return (
     <div className="form-group">

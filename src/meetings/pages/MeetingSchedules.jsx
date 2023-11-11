@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
 
 import ScheduleCard from "../components/ScheduleCard";
 import { AuthContext } from "../../shared/context/AuthContext";
@@ -24,6 +26,7 @@ const MeetingSchedules = (props) => {
           }
         );
         setData(response.data.meetings);
+        console.log(response.data.meetings);
         setIsLoading(false);
       } catch (err) {
         console.log(err);
@@ -36,17 +39,54 @@ const MeetingSchedules = (props) => {
     }
   }, [auth.token]);
 
-  return (
-    <>
-      <div className="meeting-schedules">
-        {data &&
-          data.map((schedule) => {
-            return <ScheduleCard key={schedule.id} {...schedule} />;
-          })}
+  const onDelete = async (id) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/meetings/schedule/${id}`,
+        {
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
+        }
+      );
+      console.log(response);
+      confirmAlert({
+        title: "Success",
+        message: "Meeting berhasil dihapus",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
+    } catch (err) {
+      console.log(err);
+      confirmAlert({
+        title: "Error",
+        message: err.response.data.message,
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
+    }
 
-        {isLoading && <LoadingSpinner />}
-      </div>
-    </>
+    setData((prevData) => prevData.filter((data) => data.id !== id));
+
+  };
+
+  return (
+    <div className="meeting-schedules">
+      {data &&
+        data.map((schedule) => {
+          return (
+            <ScheduleCard key={schedule.id} onDelete={onDelete} {...schedule} />
+          );
+        })}
+
+      {isLoading && <LoadingSpinner />}
+    </div>
   );
 };
 

@@ -10,6 +10,7 @@ import { AuthContext } from "../../shared/context/AuthContext";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import "../../shared/components/FormElements/Form.css";
+import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 
 const MeetingForm = () => {
   const auth = useContext(AuthContext);
@@ -25,9 +26,8 @@ const MeetingForm = () => {
     data.createdBy = auth.userId;
     if (data.division === "Both") {
       data.division = ["Kontrol", "Mekanik"];
-    }
-    else if(data.division === "All"){
-      data.division = ["Kontrol", "Mekanik", "Official"]
+    } else if (data.division === "All") {
+      data.division = ["Kontrol", "Mekanik", "Official"];
     }
     setIsLoading(true);
     try {
@@ -108,20 +108,20 @@ const MeetingForm = () => {
           optionList={days}
         />
 
-        <FormSelectElement
-          name={"hour"}
+        <FormEditElement
           label={"Hour"}
+          type={"number"}
+          name={"hour"}
+          placeholder={"Hour"}
           register={register}
-          isRequired={true}
-          optionList={hours}
         />
 
-        <FormSelectElement
-          name={"minute"}
+        <FormEditElement
           label={"Minute"}
+          type={"number"}
+          name={"minute"}
+          placeholder={"Minute"}
           register={register}
-          isRequired={true}
-          optionList={minutes}
         />
 
         <div className="form-group">
