@@ -38,30 +38,11 @@ const Leaderboard = () => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:5000/api/users`);
-        setUsers(response.data.users);
-        if (response.data.totalMeetingsAttended === 0) {
-          setUsers((prevUsers) => {
-            prevUsers.map((user) => {
-              user.totalMeetingsAttended = 0;
-              user.totalLateMeetingsAttended = 0;
-              return user;
-            });
-            return prevUsers;
-          });
-        }
-        else{
-          setUsers((prevUsers) => {
-            prevUsers.map((user, i) => {
-              user.totalMeetingsAttended = [response.data.totalMeetingsAttended[i]]
-              user.totalLateMeetingsAttended = [response.data.totalLateMeetingsAttended[i]]
-              return user;
-            });
-            return prevUsers;
-          })
-        }
+        const response = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/users`);
+        setUsers(response.data.users)
+
+
         setIsLoading(false);
-        console.log(users);
       } catch (err) {
         setIsLoading(false);
       }
@@ -78,7 +59,7 @@ const Leaderboard = () => {
     <>
       {isLoading && <LoadingSpinner asOverlay />}
       <ul className="leaderboard">
-        <li className="leaderboard-card-header card">
+        <li key="header" className="leaderboard-card-header card">
           <div className="leaderboard-card-body card-body">
             <div className="leader-board-rank">Rank</div>
             <div>Name</div>

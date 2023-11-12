@@ -26,11 +26,14 @@ body {
 @media (min-width: 768px) {
   #app-body {
     height: 92vh;
+    overflow: scroll;
   }
 }
 @media (max-width: 768px) {
   #app-body {
     height: 90vh;
+    overflow: scroll;
+
   }
 }
 

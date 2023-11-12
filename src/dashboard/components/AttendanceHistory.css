@@ -16,6 +16,9 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1em;
     max-height: 45vh;
+
+    align-items: center;
+    justify-items: center;
   }
 }
 
@@ -24,6 +27,9 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 1em;
-    max-height: 40vh;
+    max-height: 45vh;
+
+    align-items: center;
+    justify-items: center;
   }
 }
