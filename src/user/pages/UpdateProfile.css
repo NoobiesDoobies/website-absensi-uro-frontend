@@ -1,8 +1,0 @@
-.button-wrapper{
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
-}
-.button-wrapper .btn{
-    margin-left: 1.5em;
-}

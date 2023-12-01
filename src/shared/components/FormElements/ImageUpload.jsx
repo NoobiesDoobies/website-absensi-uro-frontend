@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./Form.css"
-import "./ImageUpload.css";
 
 const ImageUpload = ({ register, name, label }) => {
   return (

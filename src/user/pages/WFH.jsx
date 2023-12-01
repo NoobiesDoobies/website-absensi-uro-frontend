@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./WFH.css";
 
 const WFH = () => {
   return (

@@ -2,11 +2,8 @@ import { React, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-date-picker";
-import "react-date-picker/dist/DatePicker.css";
-import "react-calendar/dist/Calendar.css";
 import { useForm, Controller } from "react-hook-form";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 
 import { AuthContext } from "../../shared/context/AuthContext";
@@ -14,8 +11,6 @@ import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
-import "../../shared/components/FormElements/Form.css";
-import "./UpdateProfile.css";
 
 // convert date to dd/mm/yyyy
 const formatDate = (d) => {

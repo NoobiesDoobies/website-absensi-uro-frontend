@@ -1,7 +1,6 @@
 import React from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 
-import "./MeetingCard.css";
 
 // convert date to "Friday", dd/mm/yy
 function formatDateToDdMmYy(date) {

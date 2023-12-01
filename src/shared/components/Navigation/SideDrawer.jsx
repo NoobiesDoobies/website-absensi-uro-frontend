@@ -2,7 +2,6 @@ import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom"; // Remove curly braces
 import { CSSTransition } from "react-transition-group"; // Add curly braces
 
-import "./SideDrawer.css";
 
 const SideDrawer = (props) => {
   const nodeRef = useRef();

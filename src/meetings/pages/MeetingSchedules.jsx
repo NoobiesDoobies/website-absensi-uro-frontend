@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import ScheduleCard from "../components/ScheduleCard";
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "./MeetingSchedules.css";
 
 const MeetingSchedules = (props) => {
   const [data, setData] = useState(null);

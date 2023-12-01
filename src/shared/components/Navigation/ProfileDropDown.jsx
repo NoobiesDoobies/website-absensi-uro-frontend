@@ -4,8 +4,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 
 import { AuthContext } from "../../context/AuthContext";
-import "./ProfileDropDown.css";
-import "../Navigation/NavLinks.css";
 
 const ProfileDropDown = ({ imageURL, dropDownOptions }) => {
   const auth = useContext(AuthContext);

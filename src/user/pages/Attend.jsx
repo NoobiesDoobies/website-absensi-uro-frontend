@@ -2,10 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
-import { set } from "react-hook-form";
 
 const Attend = () => {
   const auth = useContext(AuthContext);

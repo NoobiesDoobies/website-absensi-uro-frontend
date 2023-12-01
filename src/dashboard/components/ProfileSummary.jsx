@@ -2,8 +2,6 @@ import React from "react";
 import { FaPersonWalkingArrowRight } from "react-icons/fa6";
 import { AiFillClockCircle } from "react-icons/ai";
 
-import "./ProfileSummary.css";
-
 // convert date to 12 October 2003
 const convertDate = (dateObj) => {
   const month = dateObj.toLocaleString("default", { month: "long" });

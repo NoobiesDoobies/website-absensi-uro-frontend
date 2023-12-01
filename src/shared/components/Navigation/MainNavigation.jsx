@@ -8,7 +8,6 @@ import NavLinks from "./NavLinks";
 import SideDrawer from "./SideDrawer";
 import Backdrop from "../UIElements/Backdrop";
 import { AuthContext } from "../../context/AuthContext";
-import "./MainNavigation.css";
 
 const MainNavigation = (props, { onLogout }) => {
   const auth = useContext(AuthContext);
@@ -60,7 +59,6 @@ const MainNavigation = (props, { onLogout }) => {
             style={({ isActive, isPending }) => {
               return {
                 fontWeight: isActive ? "bold" : "",
-                color: isPending ? "red" : "black",
               };
             }}
           >

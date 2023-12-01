@@ -1,13 +1,10 @@
 import { React, useState, useContext } from "react";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/FormElements/Form.css";
-import "./UpdateProfile.css";
 
 const UpdatePassword = () => {
   const auth = useContext(AuthContext);

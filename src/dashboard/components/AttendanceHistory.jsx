@@ -1,7 +1,6 @@
 import React from "react";
 
 import MeetingCard from "./MeetingCard";
-import "./AttendanceHistory.css";
 
 const AttendanceHistory = ({ meetingsAttendedData, allMeetingsData }) => {
   const meetings = Object.values(meetingsAttendedData);

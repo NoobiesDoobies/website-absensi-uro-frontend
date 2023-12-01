@@ -1,15 +1,12 @@
 import React, { useState, useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
-import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/FormElements/Form.css";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 
 const MeetingForm = () => {

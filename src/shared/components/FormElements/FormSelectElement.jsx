@@ -1,7 +1,5 @@
 import React from "react";
 
-import "./Form.css";
-
 const FormSelectElement = ({
   name,
   label,
@@ -11,17 +9,20 @@ const FormSelectElement = ({
   multiple = false,
   isEditingMode = true,
   defaultValue = "",
+  withLabel = true,
+  className,
+  placeHolder = "Select",
 }) => {
   return (
-    <div className="form-group">
-      <label>{label}</label>
+    <div className={className}>
+      {withLabel && <label>{label}</label>}
 
       <select
         name={name}
-        className="form-control overflow-auto"
+        className="h-10 w-full px-2"
         {...register(name, { required: true })}
       >
-        <option value="">...</option>
+        <option value="">{placeHolder}</option>
         {optionList.map((opt) => {
           return (
             <option key={opt} value={opt}>

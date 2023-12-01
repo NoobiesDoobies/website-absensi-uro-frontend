@@ -2,13 +2,11 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ProfileSummary from "../components/ProfileSummary";
 import AttendanceHistory from "../components/AttendanceHistory";
-import "./Dashboard.css";
 
 const Dashboard = (props) => {
   const auth = useContext(AuthContext);

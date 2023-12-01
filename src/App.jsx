@@ -8,7 +8,6 @@ import {
 
 import Dashboard from "./dashboard/pages/Dashboard";
 import { AuthContext } from "./shared/context/AuthContext";
-import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import Auth from "./user/pages/Auth";
 import MeetingForm from "./meetings/pages/MeetingForm";
 import Attend from "./user/pages/Attend";
@@ -104,7 +103,7 @@ const App = () => {
     >
       <Router>
         {/* MainNavigation will be rendered only if authContext is set*/}
-        <MainNavigation/>
+        {/* <MainNavigation/> */}
         <div id="app-body">
           {routes}
         </div>

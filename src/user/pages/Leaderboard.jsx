@@ -3,8 +3,6 @@ import axios from "axios";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import LeaderBoardCard from "../components/LeaderboardCard";
-import "../components/LeaderboardCard.css";
-import "./Leaderboard.css";
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([]);

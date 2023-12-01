@@ -1,6 +1,5 @@
 import React from "react";
 
-import "./ScheduleCard.css";
 function formatDateToDdMmYy(date) {
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Adding 1 to month because it's zero-based

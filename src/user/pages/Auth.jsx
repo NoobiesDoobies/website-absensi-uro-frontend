@@ -2,15 +2,14 @@ import { React, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-date-picker";
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { confirmAlert } from "react-confirm-alert";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
+import loginBg from "../../shared/images/login-bg.svg";
+import FormInputElement from "../../shared/components/FormElements/FormInputElement";
 import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/FormElements/Form.css";
+import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -97,160 +96,124 @@ const Auth = () => {
     "Official",
   ];
 
-  const divisions = [
-    "Kontrol",
-    "Mekanik",
-    "Official",
-  ]
+  const divisions = ["Kontrol", "Mekanik", "Official"];
 
   const generations = [13, 14, 15];
 
   return (
-    <>
-      <div className="form-wrapper">
-        {isLoading && <LoadingSpinner color={"black"} loading={isLoading} />}
-        <form
-          className="card auth-form"
-          onSubmit={handleSubmit((data) => authSubmitHandler(data))}
-        >
-          <div className="form-group">
-            <label>Alamat Email</label>
-            <input
-              type="email"
-              className="form-control"
-              aria-describedby="emailHelp"
-              placeholder="Enter email"
-              {...register("email", { required: true })}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Password"
-              {...register("password", { required: true })}
-              required
-            />
-          </div>
+    <div className="h-screen flex flex-col items-center">
+      <h1 className="text-4xl m-10">Absensi KRAI</h1>
+      {isLoading && <LoadingSpinner color={"black"} loading={isLoading} />}
+      <form
+        className="flex flex-col items-center"
+        onSubmit={handleSubmit((data) => authSubmitHandler(data))}
+      >
+        <div className="flex justify-center">
+          <img src={loginBg} alt="login-bg" className="content-center" />
+        </div>
+        <h2 className="m-3 font-bold text-center">
+          {isLoginMode ? "LOGIN TO YOUR ACCOUNT" : "MAKE A NEW ACCOUNT"}
+        </h2>
+        <FormInputElement
+          label="Email"
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          className="flex-1"
+          register={register}
+          required={true}
+          withLabel={false}
+        />
+        <FormInputElement
+          label="Password"
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          className="flex-1"
+          register={register}
+          required={true}
+          withLabel={false}
+        />
 
-          {!isLoginMode && (
-            <>
-              <div className="form-group">
-                <label>Nama Lengkap</label>
-                <input
-                  type="name"
-                  className="form-control"
-                  placeholder="Nama Lengkap"
-                  {...register("name", { required: true })}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Role</label>
-                <Controller
-                  name="position"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <select
-                      className="form-control scrollable-select"
-                      {...field}
-                      required
-                    >
-                      <option value="">...</option>
-                      {roles.map((role) => {
-                        return (
-                          <option key={role} value={role}>
-                            {role}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  )}
-                ></Controller>
-              </div>
-              <div className="form-group">
-                <label>Divisi</label>
-                <Controller
-                  name="division"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <select
-                      className="form-control overflow-auto"
-                      {...field}
-                      required
-                    >
-                      <option value="">...</option>
-                      {divisions.map((division) => {
-                        return (
-                          <option key={division} value={division}>
-                            {division}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  )}
-                ></Controller>
-              </div>
-              <div className="form-group">
-                <label>Kru Angkatan</label>
-                <Controller
-                  name="generation"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <select
-                      className="form-control overflow-auto"
-                      {...field}
-                      required
-                    >
-                      <option value="">...</option>
-                      {generations.map((generation) => {
-                        return (
-                          <option key={generation} value={generation}>
-                            {generation}
-                          </option>
-                        );
-                      })}
-                    </select>
-                  )}
-                ></Controller>
-              </div>
-              <div className="form-group date-picker">
-                <label>Tanggal lahir</label>
-                <Controller
-                  name="dateOfBirth"
-                  control={control}
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <DatePicker
-                      className="form-control"
-                      {...field}
-                      placeHolderText="Select Date"
-                      onChange={(date) => field.onChange(date)}
-                      selected={field.value}
-                    />
-                  )}
-                />
-              </div>
-            </>
-          )}
-          <div className="submit-button-wrapper">
-            <a href="#" className="login-switcher" onClick={switchModeHandler}>
-              {isLoginMode
-                ? "Belum punya akun? Daftar disini"
-                : "Sudah punya akun? Login disini"}
-            </a>
-            <button type="submit" className="btn btn-primary submit-button">
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
-    </>
+        {!isLoginMode && (
+          <>
+            <FormInputElement
+              label="Full Name"
+              type="text"
+              name="name"
+              placeholder="Enter name"
+              register={register}
+              required={true}
+              withLabel={false}
+            />
+
+            <FormSelectElement
+              label="Role"
+              name="role"
+              register={register}
+              optionList={roles}
+              required={true}
+              withLabel={false}
+              className="flex-1 w-full"
+              placeHolder="Select Role"
+            />
+
+            <FormSelectElement
+              label="Division"
+              name="division"
+              register={register}
+              optionList={divisions}
+              required={true}
+              withLabel={false}
+              className="flex-1 w-full"
+              placeHolder="Select Division"
+            />
+
+            <FormSelectElement
+              label="Generation"
+              name="generation"
+              register={register}
+              optionList={generations}
+              required={true}
+              withLabel={false}
+              className="flex-1 w-full"
+              placeHolder="Select Generation"
+            />
+
+            {/* <div className="">
+              <label>Tanggal lahir</label>
+              <Controller
+                name="dateOfBirth"
+                control={control}
+                rules={{ required: true }}
+                render={({ field }) => (
+                  <DatePicker
+                    className="l"
+                    {...field}
+                    placeHolderText="Select Date"
+                    onChange={(date) => field.onChange(date)}
+                    selected={field.value}
+                  />
+                )}
+              />
+            </div> */}
+          </>
+        )}
+        <a
+          href="#"
+          className="font-bold text-gray-800 self-end"
+          onClick={switchModeHandler}
+        >
+          {isLoginMode ? "Sign Up?" : "Log In?"}
+        </a>
+        <button
+          type="submit"
+          className="rounded-xl bg-blue-500 px-8 py-1.5 text-slate-100 mt-2"
+        >
+          {!isLoginMode ? "SIGN UP" : "LOG IN"}
+        </button>
+      </form>
+    </div>
   );
 };
 

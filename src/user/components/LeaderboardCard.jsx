@@ -2,7 +2,6 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaTrophy } from "react-icons/fa6";
 
-import "./LeaderBoardCard.css";
 
 const LeaderBoardCard = ({
   id,
