@@ -14,7 +14,7 @@ import FormSelectElement from "../../shared/components/FormElements/FormSelectEl
 const Auth = () => {
   const navigate = useNavigate();
   const auth = useContext(AuthContext);
-
+  const formContext = useContext(FormContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { register, control, handleSubmit } = useForm();
   const [isLoading, setIsLoading] = useState(false);
@@ -84,21 +84,15 @@ const Auth = () => {
     }
   };
 
-  const roles = [
-    "Ketua",
-    "Wakil Ketua",
-    "Manpro R1",
-    "Manpro R2",
-    "Kepala Divisi Mekanik",
-    "Kepala Divisi Kontrol",
-    "Kru Mekanik",
-    "Kru Kontrol",
-    "Official",
-  ];
-
-  const divisions = ["Kontrol", "Mekanik", "Official"];
-
-  const generations = [13, 14, 15];
+  const roles = formContext.roles;
+  const divisions = formContext.divisions.filter((division) => {
+    return (
+      division === "Mekanik" ||
+      division === "Kontrol" ||
+      division === "Official"
+    );
+  });
+  const generations = formContext.generations;
 
   return (
     <div className="h-screen flex flex-col items-center">

@@ -4,7 +4,7 @@ import { FaTrophy } from "react-icons/fa6";
 
 
 const LeaderBoardCard = ({
-  id,
+  _id,
   name,
   rank,
   totalMeetingsAttended,
@@ -23,11 +23,12 @@ const LeaderBoardCard = ({
     rankComponent = <div className="rank">{rank}</div>;
   }
 
+
   return (
     <li className="leaderboard-card card">
       <div className="leaderboard-card-body card-body">
         {rankComponent}
-        <NavLink to={`/dashboard/${id}`} className="profile-nav-link">
+        <NavLink to={`/dashboard/${_id}`} className="profile-nav-link">
           <img
             src={`http://localhost:5000/${image}`}
             alt="profile"

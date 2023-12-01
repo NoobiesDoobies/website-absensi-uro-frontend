@@ -15,13 +15,12 @@ const ProfileSummary = ({
   name,
   position,
   email,
-  totalAttendance,
   meetings,
   imageURL,
   dateOfBirth
 }) => {
   let averageLateTime = 0;
-
+  const totalAttendance = meetings.length;
   meetings.map((meeting) => {
     if (meeting.lateTime > 0) {
       averageLateTime += meeting.lateTime;

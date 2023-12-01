@@ -36,8 +36,10 @@ const Leaderboard = () => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`http://localhost:5000/api/users`);
-        setUsers(response.data.users);
+        const response = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/users`);
+        setUsers(response.data.users)
+
+
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -55,13 +57,13 @@ const Leaderboard = () => {
     <>
       {isLoading && <LoadingSpinner asOverlay />}
       <ul className="leaderboard">
-        <li className="leaderboard-card-header card">
+        <li key="header" className="leaderboard-card-header card">
           <div className="leaderboard-card-body card-body">
             <div className="leader-board-rank">Rank</div>
             <div>Name</div>
             <div className="meeting-attended-wrapper">
-              <div >Late</div>
-              <div >Total</div>
+              <div>Late</div>
+              <div>Total</div>
             </div>
           </div>
         </li>

@@ -5,7 +5,7 @@ import DatePicker from "react-date-picker";
 import { useForm, Controller } from "react-hook-form";
 import { confirmAlert } from "react-confirm-alert";
 
-
+import { FormContext } from "../../shared/context/FormContext";
 import { AuthContext } from "../../shared/context/AuthContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
@@ -22,6 +22,7 @@ const formatDate = (d) => {
 
 const UpdateProfile = () => {
   const auth = useContext(AuthContext);
+  const formContext = useContext(FormContext);
 
   const [data, setData] = useState(null);
   let { register, control, handleSubmit, reset } = useForm();
@@ -131,21 +132,17 @@ const UpdateProfile = () => {
     }
   }, [data, reset]);
 
-  const roles = [
-    "Ketua",
-    "Wakil Ketua",
-    "Manpro R1",
-    "Manpro R2",
-    "Kepala Divisi Mekanik",
-    "Kepala Divisi Kontrol",
-    "Kru Mekanik",
-    "Kru Kontrol",
-    "Official",
-  ];
+  const roles = formContext.roles;
 
-  const divisions = ["Kontrol", "Mekanik", "Official"];
+  const divisions = formContext.divisions.filter((division) => {
+    return (
+      division === "Mekanik" ||
+      division === "Kontrol" ||
+      division === "Official"
+    );
+  });
 
-  const generations = [13, 14, 15];
+  const generations = formContext.generations;
 
   return (
     <>

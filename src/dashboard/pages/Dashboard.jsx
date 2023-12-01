@@ -24,6 +24,7 @@ const Dashboard = (props) => {
         const response = await axios.get(
           `http://localhost:5000/api/users/meetings/${uid}`
         );
+        console.log(response.data)
         setUserData(response.data.user);
         setUserMeetingsData(response.data.userMeetings);
         const meetings = response.data.userMeetings.map((userMeeting) => {
