@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import DatePicker from "react-date-picker";
 import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+import "react-date-picker/dist/DatePicker.css";
 
 import loginBg from "../../shared/images/login-bg.svg";
 import FormInputElement from "../../shared/components/FormElements/FormInputElement";
@@ -26,6 +28,7 @@ const Auth = () => {
   };
 
   const authSubmitHandler = async (data) => {
+    console.log(data);
     setIsLoading(true);
     if (isLoginMode) {
       try {
@@ -175,7 +178,7 @@ const Auth = () => {
               placeHolder="Select Generation"
             />
 
-            {/* <div className="">
+            <div className="">
               <label>Tanggal lahir</label>
               <Controller
                 name="dateOfBirth"
@@ -191,7 +194,7 @@ const Auth = () => {
                   />
                 )}
               />
-            </div> */}
+            </div>
           </>
         )}
         <a

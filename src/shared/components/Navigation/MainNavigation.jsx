@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { FaHome } from "react-icons/fa";
 
-
 import ProfileDropDown from "./ProfileDropDown";
 import MainHeader from "./MainHeader";
 import NavLinks from "./NavLinks";
@@ -13,10 +12,10 @@ import { AuthContext } from "../../context/AuthContext";
 
 const MainNavigation = ({ onLogout }) => {
   return (
-    <>
+    <div className="bg-light-blue w-screen px-4">
       <MainHeader>
         <h1 className="flex flex-col justify-center items-center">
-          <NavLink to="/" className="fixed self-start">
+          <NavLink to="/" className="absolute self-start">
             <FaHome className="text-4xl text-dark-blue" />
           </NavLink>
           <NavLink to="/" className="flex flex-col justify-center items-center">
@@ -27,13 +26,13 @@ const MainNavigation = ({ onLogout }) => {
           </NavLink>
           <button
             onClick={onLogout}
-            className="fixed self-end  bg-cream-yellow rounded-full p-2"
+            className="absolute self-end  bg-cream-yellow rounded-full p-2"
           >
             Logout
           </button>
         </h1>
       </MainHeader>
-    </>
+    </div>
   );
 };
 

@@ -63,19 +63,22 @@ const Home = ({ logout }) => {
     <div className="flex flex-col items-center justify-center">
       {isLoading && <LoadingSpinner asOverlay />}
       {userData && (
-        <div className="flex-1 flex-col items-center justify-center px-6">
+        <>
           <MainNavigation onLogout={logout} />
-          <Profile {...userData} />
-          <div className="my-3">
-            <h1 className="text-5xl font-bold">
-              Hi, {userData.name.split(" ")[0]}
-            </h1>
-            <p className="font-bold text-2xl text-dark-blue">
-              Selamat ngoprek, kontol
-            </p>
+
+          <div className="flex-1 flex-col items-center justify-center px-6">
+            <Profile {...userData} />
+            <div className="my-3">
+              <h1 className="text-5xl font-bold">
+                Hi, {userData.name.split(" ")[0]}
+              </h1>
+              <p className="font-bold text-2xl text-dark-blue">
+                Selamat ngoprek, kontol
+              </p>
+            </div>
+            <NavLinks />
           </div>
-          <NavLinks/>
-        </div>
+        </>
       )}
     </div>
   );
