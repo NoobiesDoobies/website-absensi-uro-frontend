@@ -7,11 +7,9 @@ import { AuthContext } from "../../shared/context/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import { confirmAlert } from "react-confirm-alert";
 import DatePicker from "react-date-picker";
-import "react-confirm-alert/src/react-confirm-alert.css";
 
 import { FormContext } from "../../shared/context/FormContext";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import "../../shared/components/FormElements/Form.css";
 import FormEditElement from "../../shared/components/FormElements/FormEditElement";
 import { FormSelect } from "react-bootstrap";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";

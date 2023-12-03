@@ -7,6 +7,7 @@ import { confirmAlert } from "react-confirm-alert";
 import loginBg from "../../shared/images/login-bg.svg";
 import FormInputElement from "../../shared/components/FormElements/FormInputElement";
 import { AuthContext } from "../../shared/context/AuthContext";
+import { FormContext } from "../../shared/context/FormContext";
 import { useForm, Controller } from "react-hook-form";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import FormSelectElement from "../../shared/components/FormElements/FormSelectElement";
@@ -34,8 +35,8 @@ const Auth = () => {
         );
         setIsLoading(false);
 
-        const { userId, email, isAdmin, token } = response.data;
-        auth.login(userId, email, isAdmin, token);
+        const { userId, email, isAdmin, token, name } = response.data;
+        auth.login(userId, email, isAdmin, token, name);
       } catch (err) {
         console.log(err);
         if (err.response) {

@@ -1,26 +1,16 @@
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
 
+import CustomNavLink from "./CustomNavLink";
 import { AuthContext } from "../../context/AuthContext";
 
 const NavLinks = (props) => {
   const auth = useContext(AuthContext);
 
   return (
-    <ul className="nav-links">
-      {auth.isLoggedIn && (
-        <li>
-          <NavLink to="/attend">Attend</NavLink>
-        </li>
-      )}
-      {auth.isLoggedIn && (
-        <li>
-          <NavLink to="/dashboard">Dashboard</NavLink>
-        </li>
-      )}
-      <li>
-        <NavLink to="/leaderboard">Leaderboard</NavLink>
-      </li>
+    <ul className="font-bold text-xl my-10">
+      <CustomNavLink to="/dashboard" text="Dashboard" />
+      <CustomNavLink to="/leaderboard" text="Leaderboard" />
+      {/* 
       {auth.isLoggedIn && (
         <li>
           <NavLink to="/wfh">WFH</NavLink>
@@ -48,7 +38,7 @@ const NavLinks = (props) => {
         <li>
           <NavLink to="/auth">Sign In</NavLink>
         </li>
-      )}
+      )} */}
     </ul>
   );
 };
