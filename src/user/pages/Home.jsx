@@ -64,8 +64,6 @@ const Home = ({ logout }) => {
       {isLoading && <LoadingSpinner asOverlay />}
       {userData && (
         <>
-          <MainNavigation onLogout={logout} />
-
           <div className="flex-1 flex-col items-center justify-center px-6">
             <Profile {...userData} />
             <div className="my-3">

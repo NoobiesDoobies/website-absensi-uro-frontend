@@ -3,43 +3,20 @@ import axios from "axios";
 
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import LeaderBoardCard from "../components/LeaderboardCard";
+import { useReducer } from "react";
 
 const Leaderboard = () => {
   const [users, setUsers] = useState([]);
   const [sortedUsers, setSortedUsers] = useState([]);
   const [rankList, setRankList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const sortUsersAndGenerateIndex = () => {
-    const sortedUsers = users.sort((a, b) => {
-      return b.totalMeetingsAttended - a.totalMeetingsAttended;
-    });
-
-    const rankList = [1];
-
-    let j = 1;
-    for (let i = 1; i < sortedUsers.length; i++) {
-      if (
-        sortedUsers[i].totalMeetingsAttended !==
-        sortedUsers[i - 1].totalMeetingsAttended
-      ) {
-        j++;
-        rankList.push(j);
-        continue;
-      }
-      rankList.push(j);
-    }
-    return { sortedUsers, rankList };
-  };
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`${import.meta.env.REACT_APP_BACKEND_URL}/users`);
-        setUsers(response.data.users)
-
-
+        const response = await axios.get(`http://localhost:5000/api/users`);
+        setUsers(response.data.users);
+        console.log(users);
         setIsLoading(false);
       } catch (err) {
         setIsLoading(false);
@@ -49,29 +26,50 @@ const Leaderboard = () => {
   }, []);
 
   useEffect(() => {
+    const sortUsersAndGenerateIndex = () => {
+      const sortedUsers = users.sort((a, b) => {
+        return b.points - a.points;
+      });
+
+      const rankList = [1];
+
+      let j = 1;
+      for (let i = 1; i < sortedUsers.length; i++) {
+        if (sortedUsers[i].points !== sortedUsers[i - 1].points) {
+          j++;
+          rankList.push(j);
+          continue;
+        }
+        rankList.push(j);
+      }
+      return { sortedUsers, rankList };
+    };
+    console.log(users);
+    users.map((user) => {
+      user.points =
+        (user.totalMeetingsAttended - user.totalLateMeetingsAttended) * 100 +
+        user.totalLateMeetingsAttended * 50;
+    });
+    console.log(users[0].points);
+    sortUsersAndGenerateIndex();
     setSortedUsers(sortUsersAndGenerateIndex().sortedUsers);
     setRankList(sortUsersAndGenerateIndex().rankList);
   }, [users]);
 
   return (
-    <>
+    <div className="px-6 ">
+      <h1 className="font-bold text-2xl">Leaderboard</h1>
       {isLoading && <LoadingSpinner asOverlay />}
       <ul className="leaderboard">
-        <li key="header" className="leaderboard-card-header card">
-          <div className="leaderboard-card-body card-body">
-            <div className="leader-board-rank">Rank</div>
-            <div>Name</div>
-            <div className="meeting-attended-wrapper">
-              <div>Late</div>
-              <div>Total</div>
-            </div>
-          </div>
-        </li>
         {sortedUsers.map((user, i) => {
-          return <LeaderBoardCard key={user.id} rank={rankList[i]} {...user} />;
+          return (
+            <li key={user.id}>
+              <LeaderBoardCard key={user.id} rank={rankList[i]} {...user} />
+            </li>
+          );
         })}
       </ul>
-    </>
+    </div>
   );
 };
 

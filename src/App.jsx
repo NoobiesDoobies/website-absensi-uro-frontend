@@ -12,7 +12,7 @@ import Auth from "./user/pages/Auth";
 import ScheduleForm from "./meetings/pages/ScheduleForm";
 import Attend from "./user/pages/Attend";
 import UpdateProfile from "./user/pages/UpdateProfile";
-import UpdatePassword from "./user/pages/UpdatePassword"
+import UpdatePassword from "./user/pages/UpdatePassword";
 import Leaderboard from "./user/pages/Leaderboard";
 import MeetingSchedules from "./meetings/pages/MeetingSchedules";
 import WFH from "./user/pages/WFH";
@@ -25,14 +25,14 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userId, setUserId] = useState(null);
-  const [name, setName] = useState(null); 
+  const [name, setName] = useState(null);
   const [token, setToken] = useState(null);
   const login = useCallback((userId, email, isAdmin, token, name) => {
     setIsLoggedIn(true);
     setIsAdmin(isAdmin);
     setUserId(userId);
     setToken(token);
-    setName(name)
+    setName(name);
 
     localStorage.setItem(
       "userData",
@@ -72,9 +72,10 @@ const App = () => {
   if (isLoggedIn) {
     routes = (
       <Routes>
-        <Route path="/home/:uid" element={<Home logout={logout}/>} />
-        {/* <Route path="/dashboard/:uid" element={<Dashboard />} />
+        <Route path="/home/:uid" element={<Home logout={logout} />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        {/* <Route path="/dashboard/:uid" element={<Dashboard />} />
+        
         <Route path="/wfh" element={<WFH />} />
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<ScheduleForm />} />
@@ -84,10 +85,9 @@ const App = () => {
         <Route path="/meetings/edit/:mid" element={<EditMeetingForm/>}/>
         <Route path="/meetings" element={<MeetingList/>}/>
         <Route path="/logout" element={<LogoutWrapper/>} /> */}
-        <Route
-          path="*"
-          element={<Navigate to={`/home/${userId}`} replace />}
-        />
+        {/* <Route path="*" element={<Navigate to={`/home/${userId}`} replace />} /> */}
+        <Route path="*" element={<Navigate to={`/leaderboard`} replace />} />
+
       </Routes>
     );
   } else {
@@ -111,12 +111,11 @@ const App = () => {
         token,
       }}
     >
+      
       <Router>
         {/* MainNavigation will be rendered only if authContext is set*/}
-        {/* <MainNavigation/> */}
-        <div id="app-body">
-          {routes}
-        </div>
+        <MainNavigation/>
+        <div id="app-body">{routes}</div>
       </Router>
     </AuthContext.Provider>
   );

@@ -7,7 +7,7 @@ import MainHeader from "./MainHeader";
 
 const MainNavigation = ({ onLogout }) => {
   return (
-    <div className="bg-light-blue w-screen px-4">
+    <div className="bg-light-blue w-screen px-4 mb-5">
       <MainHeader>
         <h1 className="flex flex-col justify-center items-center">
           <NavLink to="/" className="absolute self-start">
