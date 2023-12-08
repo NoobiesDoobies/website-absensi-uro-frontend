@@ -44,13 +44,11 @@ const Leaderboard = () => {
       }
       return { sortedUsers, rankList };
     };
-    console.log(users);
     users.map((user) => {
       user.points =
         (user.totalMeetingsAttended - user.totalLateMeetingsAttended) * 100 +
         user.totalLateMeetingsAttended * 50;
     });
-    console.log(users[0].points);
     sortUsersAndGenerateIndex();
     setSortedUsers(sortUsersAndGenerateIndex().sortedUsers);
     setRankList(sortUsersAndGenerateIndex().rankList);

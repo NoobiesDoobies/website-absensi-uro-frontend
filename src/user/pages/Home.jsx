@@ -29,7 +29,6 @@ const Home = ({ logout }) => {
         );
         setUserData(response.data.user);
         setUserMeetingsData(response.data.userMeetings);
-        console.log(userData);
         const meetings = response.data.userMeetings.map((userMeeting) => {
           let meeting = userMeeting.meeting;
           meeting.lateTime = userMeeting.lateTime;
@@ -59,13 +58,61 @@ const Home = ({ logout }) => {
     fetchData();
   }, [uid]);
 
+  async function attend() {
+    const data = {
+      attendedAt: new Date(),
+    };
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/users/attend`,
+        data,
+        {
+          headers: {
+            Authorization: "Bearer " + auth.token,
+          },
+        }
+      );
+      setResponse(response.data);
+      console.log(response.data);
+      confirmAlert({
+        title: "Success",
+        message: "Absen berhasil",
+        buttons: [
+          {
+            label: "Ok",
+          },
+        ],
+      });
+    } catch (err) {
+      if (err.response) {
+        confirmAlert({
+          title: "Error",
+          message: err.response.data.message,
+          buttons: [
+            {
+              label: "Ok",
+            },
+          ],
+        });
+      }
+      console.log(err.message);
+    }
+  }
   return (
     <div className="flex flex-col items-center justify-center">
       {isLoading && <LoadingSpinner asOverlay />}
       {userData && (
         <>
           <div className="flex-1 flex-col items-center justify-center px-6">
-            <Profile {...userData} />
+            <div className="flex flex-row items-center justify-between">
+              <Profile {...userData} />
+              <button
+                className="mx-2 bg-light-blue p-3 rounded-full text-white"
+                onClick={attend}
+              >
+                Attend
+              </button>
+            </div>
             <div className="my-3">
               <h1 className="text-5xl font-bold">
                 Hi, {userData.name.split(" ")[0]}

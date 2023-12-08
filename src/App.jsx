@@ -85,8 +85,7 @@ const App = () => {
         <Route path="/meetings/edit/:mid" element={<EditMeetingForm/>}/>
         <Route path="/meetings" element={<MeetingList/>}/>
         <Route path="/logout" element={<LogoutWrapper/>} /> */}
-        {/* <Route path="*" element={<Navigate to={`/home/${userId}`} replace />} /> */}
-        <Route path="*" element={<Navigate to={`/leaderboard`} replace />} />
+        <Route path="*" element={<Navigate to={`/home/${userId}`} replace />} />
 
       </Routes>
     );
