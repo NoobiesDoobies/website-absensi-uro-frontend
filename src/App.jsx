@@ -113,7 +113,7 @@ const App = () => {
       
       <Router>
         {/* MainNavigation will be rendered only if authContext is set*/}
-        <MainNavigation/>
+        {isLoggedIn && <MainNavigation onLogout={logout}/>}
         <div id="app-body">{routes}</div>
       </Router>
     </AuthContext.Provider>

@@ -72,8 +72,6 @@ const Home = ({ logout }) => {
           },
         }
       );
-      setResponse(response.data);
-      console.log(response.data);
       confirmAlert({
         title: "Success",
         message: "Absen berhasil",
