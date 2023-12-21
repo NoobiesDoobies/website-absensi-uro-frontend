@@ -1,5 +1,3 @@
-import React from "react";
-
 const FormInputElement = ({
   register,
   label,
@@ -8,16 +6,17 @@ const FormInputElement = ({
   type = "text",
   required = true,
   withLabel = true,
-  className
+  className,
+  error,
 }) => {
   return (
     <div className={className}>
-      {withLabel && <label className="sm:">{label}</label>}
+      {withLabel && <label className="">{label}</label>}
       <input
-        className="h-10 w-full px-2"
+        className="w-full h-10 px-2 border-2 border-gray-600 rounded-md outline-none"
         type={type}
         placeholder={placeholder}
-        {...register(name, { required: { required } })}
+        {...register(name, { required: error ? error : true })}
         required
       />
     </div>

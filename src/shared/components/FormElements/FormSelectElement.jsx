@@ -19,7 +19,7 @@ const FormSelectElement = ({
 
       <select
         name={name}
-        className="h-10 w-full px-2"
+        className="w-full h-10 px-2 border-2 border-gray-600 rounded-md outline-none"
         {...register(name, { required: true })}
       >
         <option value="">{placeHolder}</option>

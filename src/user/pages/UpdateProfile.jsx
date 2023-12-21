@@ -13,12 +13,6 @@ import FormSelectElement from "../../shared/components/FormElements/FormSelectEl
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 
 // convert date to dd/mm/yyyy
-const formatDate = (d) => {
-  let month = "" + (d.getMonth() + 1);
-  let day = "" + d.getDate();
-  let year = d.getFullYear();
-  return [day, month, year].join("/");
-};
 
 const UpdateProfile = () => {
   const auth = useContext(AuthContext);
