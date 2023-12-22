@@ -4,26 +4,34 @@ import axios from 'axios';
 // import DatePicker from 'react-date-picker';
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import 'react-date-picker/dist/DatePicker.css';
+import 'react-day-picker/dist/style.css';
 
 // import loginBg from '../../shared/images/login-bg.svg';
 import FormInputElement from '../../shared/components/FormElements/FormInputElement';
 import { AuthContext } from '../../shared/context/AuthContext';
 import { FormContext } from '../../shared/context/FormContext';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import FormSelectElement from '../../shared/components/FormElements/FormSelectElement';
 
 import logoKRAI from '../../assets/logo_garudago-cropped.png';
+import { DayPicker } from 'react-day-picker';
 
 const Auth = () => {
   // const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const formContext = useContext(FormContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const { register, handleSubmit, formState: {isSubmitting, isDirty, isValid} } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting, isDirty, isValid },
+    control,
+  } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
+  const [expandDateOfBirth, setExpandDateOfBirth] = useState(false);
+  const [dateOfBirth, setDateOfBirth] = useState(null);
   const [page, setPage] = useState(1);
 
   const FormInputs = [
@@ -77,9 +85,20 @@ const Auth = () => {
       name: 'gender',
       optionList: formContext.genderIdentities,
       placeHolder: 'Gender',
-      error: 'Put down which kind of bitch u r babe'
+      error: 'Put down which kind of bitch u r babe',
     },
   ];
+
+  const dateFooter = (
+    <div className='flex flex-row-reverse w-full'>
+      <button
+        className='px-4 py-1.5 bg-gray-100 rounded-lg hover:bg-slate-300 transition-colors'
+        onClick={() => setExpandDateOfBirth(false)}
+      >
+        Confirm
+      </button>
+    </div>
+  );
 
   const switchModeHandler = () => {
     setIsLoginMode((prevMode) => !prevMode);
@@ -222,24 +241,41 @@ const Auth = () => {
 
               return null;
             })}
-
-            {/* <div className=''>
-              <label>Tanggal lahir</label>
-              <Controller
-                name='dateOfBirth'
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
-                  <DatePicker
-                    className='l'
-                    {...field}
-                    placeHolderText='Select Date'
-                    onChange={(date) => field.onChange(date)}
-                    selected={field.value}
+            {page === Math.ceil(FormSelects.length / 3) + 1 && (
+              <div className='relative w-full'>
+                <div
+                  onClick={() => setExpandDateOfBirth((prev) => !prev)}
+                  className='flex justify-between self-start w-full border-[2px] border-solid border-gray-800 py-1.5 px-3 rounded-lg hover:bg-slate-100 transition-colors cursor-pointer'
+                >
+                  <div className=''>{dateOfBirth ? dateOfBirth : 'Tanggal Lahir'}</div>
+                </div>
+                <div
+                  className={
+                    expandDateOfBirth
+                      ? 'absolute bottom-[110%] bg-blue-300/90 rounded-lg left-[50%] translate-x-[-50%]'
+                      : 'absolute bottom-[110%] bg-blue-300/90 rounded-lg left-[50%] translate-x-[-50%] hidden'
+                  }
+                >
+                  <Controller
+                    name='dateOfBirth'
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <DayPicker
+                        mode='single'
+                        onSelect={(date) => {
+                          setDateOfBirth(date.toLocaleDateString('id-ID'))
+                          field.onChange(date)
+                        }}
+                        selected={field.value}
+                        footer={dateFooter}
+                        {...field}
+                      />
+                    )}
                   />
-                )}
-              />
-            </div> */}
+                </div>
+              </div>
+            )}
           </>
         )}
         {error && (
@@ -262,10 +298,14 @@ const Auth = () => {
                   Prev
                 </button>
               )}
-                <button
+              <button
                 disabled={isSubmitting || !isDirty || !isValid}
                 type='submit'
-                className={isSubmitting || !isDirty || !isValid ? 'rounded-xl px-8 py-1.5 w-full bg-blue-200 mt-2 cursor-not-allowed' : 'rounded-xl bg-blue-500 px-8 py-1.5 text-slate-100 mt-2 w-full hover:bg-blue-600 transition-colors'}
+                className={
+                  isSubmitting || !isDirty || !isValid
+                    ? 'rounded-xl px-8 py-1.5 w-full bg-blue-200 mt-2 cursor-not-allowed'
+                    : 'rounded-xl bg-blue-500 px-8 py-1.5 text-slate-100 mt-2 w-full hover:bg-blue-600 transition-colors'
+                }
               >
                 {!isLoginMode ? 'Sign Up' : 'Sign In'}
               </button>
