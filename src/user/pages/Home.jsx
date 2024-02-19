@@ -3,14 +3,13 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { confirmAlert } from "react-confirm-alert";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-import MainNavigation from "../../shared/components/Navigation/MainNavigation";
 import Profile from "../components/Profile";
 
 import { AuthContext } from "../../shared/context/AuthContext";
 import { NavLink } from "react-bootstrap";
 import NavLinks from "../../shared/components/Navigation/NavLinks";
 
-const Home = ({ logout }) => {
+const Home = () => {
   // query params uid
   const auth = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -116,7 +115,7 @@ const Home = ({ logout }) => {
                 Hi, {userData.name.split(" ")[0]}
               </h1>
               <p className="font-bold text-2xl text-dark-blue">
-                Selamat ngoprek, kontol
+                Selamat ngoprek :D
               </p>
             </div>
             <NavLinks />

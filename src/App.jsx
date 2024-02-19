@@ -74,12 +74,13 @@ const App = () => {
       <Routes>
         <Route path="/home/:uid" element={<Home logout={logout} />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
+        <Route path="/update-profile" element={<UpdateProfile />} />
+
         {/* <Route path="/dashboard/:uid" element={<Dashboard />} />
         
         <Route path="/wfh" element={<WFH />} />
         <Route path="/attend" element={<Attend />} />
         <Route path="/create-meeting" element={<ScheduleForm />} />
-        <Route path="/update-profile" element={<UpdateProfile />} />
         <Route path="/update-password" element={<UpdatePassword/>}/>
         <Route path="/meeting-schedules" element={<MeetingSchedules/>}/>
         <Route path="/meetings/edit/:mid" element={<EditMeetingForm/>}/>
